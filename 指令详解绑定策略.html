@@ -31,7 +31,7 @@
                 </div>
                 <!-- 使用属性声明指令 -->
                 <hr>
-                <div class="my-directive" my-directive></div>
+                <div class="my-directive" my-directive><h1>transclude原来的内容还会在这里</h1></div>
             </div>
 
 
@@ -69,8 +69,9 @@
                     scope: false, //指令继承父作用域的属性和方法(双向绑定)
                     //scope: true, //单向绑定父作用域的数据
                     replace: true,
-                    template: "<div class='my-directive'><h3>下面部分是我们创建的指令生成的</h3>我的名字是：<span ng-bind='name'></span><br/>我的年龄是：<span ng-bind='age'></span><input type='text' ng-model='name'> <button ng-click='changeAge()'>修改年龄</button></div>"
-                }
+                    transclude: true,
+                    template: "<div class='my-directive'><h3>下面部分是我们创建的指令生成的</h3>我的名字是：<span ng-bind='name'></span><br/>我的年龄是：<span ng-bind='age'></span><input type='text' ng-model='name'> <button ng-click='changeAge()'>修改年龄</button><span ng-transclude></span></div>"
+                  }
                 return obj;
                 //当我们将scope设置为true的时候，我们就新创建了一个作用域，只不过这个作用域是继承了我们的父作用域。
                 //当我们将scope设置为false的时候,我们创建的指令和父作用域（其实是同一个作用域）共享同一个model模型，所以在指令中修改模型数据，它会反映到父作用域的模型中。
