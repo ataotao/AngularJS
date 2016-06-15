@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="http://192.168.0.118/git/h5_v3.0/common/bootstrap/css/bootstrap.min.css">
+</head>
+<body ng-app="app">
+	<tabs>
+			<pane title="通过VIN号查询">
+							<input type="text" class="form-control" autocomplete="off" ng-model="tabModel.model" placeholder="通过VIN号查询">
+			</pane>
+			<pane title="通过车型查询">
+					<input type="text" class="form-control" autocomplete="off" ng-model="tabModel.model" placeholder="请输入车型，如 宝马 或 宝马120i">
+			</pane>
+
+	</tabs>
+
+</div>
+    <script src="http://192.168.0.118/git/car2go_h5/Buyers_htmlV3.0/resource/AngularJS/angular.min.js"></script>
+<script type="text/javascript">
+	var app = angular.module('app', []);
+	//tab页切换
+	app.directive('tabs', function() {
+	    return {
+	        restrict: 'E',
+	        transclude: true,
+	        scope: {},
+	        controller: ["$scope", function($scope) {
+	            var panes = $scope.panes = [];
+
+	            $scope.select = function(pane) {
+	                angular.forEach(panes, function(pane) {
+	                    pane.selected = false;
+	                });
+	                pane.selected = true;
+	            }
+
+	            this.addPane = function(pane) {
+	                if (panes.length == 0) $scope.select(pane);
+	                panes.push(pane);
+	            }
+	        }],
+	        template: '<div>' +
+	            '<ul class="btn-group btn-group-justified form-group">' +
+	            '<li class="btn-group btn-group-lg" ng-repeat="pane in panes">' +
+	            '<button type="button" class="btn btn-default title" ng-class={"btn-default":pane.selected} ng-click="select(pane); test()">{{pane.title}}</button>' +
+	            '</li>' +
+	            '</ul>' +
+	            '<div class="form-group form-group-lg tab-content" ng-transclude></div>' +
+	            '</div>',
+	        replace: true
+	    };
+	}).
+	directive('pane', function() {
+	    return {
+	        require: '^tabs',
+	        restrict: 'E',
+	        transclude: true,
+	        scope: { title: '@' },
+	        link: function(scope, element, attrs, tabsCtrl) {
+	            tabsCtrl.addPane(scope);
+	        },
+	        template: '<div class="tab-pane rel" ng-class="{active: selected}" ng-transclude>' +
+	            '</div>',
+	        replace: true
+	    };
+	})
+
+</script>
+</body>
+</html>
