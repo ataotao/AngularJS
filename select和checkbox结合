@@ -1,0 +1,99 @@
+<!doctype html>
+<html ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>angularjs</title>
+    <style type="text/css">
+    .icon-tick {
+        background-color: red;
+    }
+
+    .icon-loops {
+        background-color: gray;
+    }
+    </style>
+</head>
+
+<body>
+    <div ng-controller="customerCtr">
+        <label>全选:</label>
+        <input type="checkbox" ng-model="chkAll" ng-click="isCheckedAll(chkAll)" />
+        <div ng-repeat="item in partsInfo" ng-init="item.checked = true">
+            {{item.text}} {{item.selectMod}}
+            <select ng-model="selectMod" ng-options="o for o in numArr[$index]" ng-change="selChange($index,selectMod)" ng-init="selectMod = numArr[$index].length">
+            </select>
+            <input type="checkbox" ng-model="item.checked" />
+            <span ng-class="{true:'icon-tick', false: 'icon-loops'}[item.checked]">选</span>
+        </div>
+        <div>你选中的是:{{choseArr}}</div>
+    </div>
+    <hr/>
+    <script src="http://192.168.0.118/git/car2go_h5/Buyers_htmlV3.0/resource/AngularJS/angular.min.js"></script>
+    <script type="text/javascript">
+    var app = angular.module('app', []);
+    app.controller('customerCtr', ['$scope', '$filter', function($scope, $filter) {
+
+        $scope.partsInfo = [{
+            num: 2,
+            text: "测试1"
+        }, {
+            num: 1,
+            text: "测试2"
+        }, {
+            num: 5,
+            text: "测试3"
+        }, {
+            num: 6,
+            text: "测试4"
+        }];
+
+        //根据num模拟select数据
+        $scope.numArr = [];
+        angular.forEach($scope.partsInfo, function(value, key) {
+            $scope.numArr[key] = [];
+            for (var i = 1; i <= value.num; i++) {
+                $scope.numArr[key].push(i)
+            }
+        });
+
+        //设置选择当前select的选中结果
+        $scope.selChange = function(index, mod) {
+            $scope.partsInfo[index].num = mod;
+        }
+
+        //全选操作
+        $scope.isCheckedAll = function(checked) {
+            angular.forEach($scope.partsInfo, function(value, key) {
+                value.checked = checked;
+            });
+        };
+
+        //监听选择数据是否变化
+        $scope.$watch('partsInfo', function(newVal, oldVal) {
+            if (newVal == oldVal) {
+                return;
+            }
+
+            //模拟返回提交数据
+            $scope.choseArr = [];
+            //根据是否选中获取需要提交的数据
+            angular.forEach(
+                $filter('filter')(newVal, {
+                    checked: true
+                }),
+                function(item) {
+                    $scope.choseArr.push(item);
+                });
+
+            //判断初始化是否全选的勾选状态
+            $scope.chkAll = $scope.choseArr.length == $scope.partsInfo.length;
+
+        }, true);
+
+
+    }]);
+    </script>
+</body>
+
+</html>
