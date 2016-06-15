@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="test">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link href="http://192.168.0.118/git/h5_v3.0/common/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://192.168.0.118/git/h5_v3.0/sellers/resource/css/custom.css" rel="stylesheet" type="text/css" />
+    <link href="http://192.168.0.118/git/h5_v3.0//common/img/apple-touch-icon-57x57-precomposed.png" rel="apple-touch-icon-precomposed">
+    <link href="http://192.168.0.118/git/h5_v3.0/common/img/apple-touch-icon-114x114-precomposed.png" sizes="114x114" rel="apple-touch-icon-precomposed">
+    <title>Document</title>
+</head>
+<style>
+    .btn {
+        display: block;
+        border: 1px solid;
+        height: 100px;
+        width: 100px;
+        float: left;
+        margin: 20px;
+        padding: 10px;
+    }
+</style>
+
+<body>
+    <div ng-controller="demoCtrl">
+
+        <div>
+            <div class='btn' on-touch="clickedOrTouched(4)">Touch or click me</div>
+            <div class='btn' on-touch="clickedOrTouched(1)">Touch or click me</div>
+            <div class='btn' on-touch="clickedOrTouched(2)">Touch or click me</div>
+        </div>
+        <hr>
+        <div>{{messages.join(' | ')}}</div>
+
+    </div>
+    <script src="http://192.168.0.118/git/car2go_h5/Buyers_htmlV3.0/resource/AngularJS/angular.min.js"></script>
+    <script>
+	var app = angular.module('test', []);
+
+    app.directive('onTouch', function() {
+            return {
+                restrict: 'A',
+                link: function(scope, elm, attrs) {
+                    elm.bind('touchstart', function(evt) {
+                        scope.$apply(function() {
+                            scope.$eval(attrs.onTouch);
+                        });
+                    });
+
+                    elm.bind('click', function(evt) {
+                        scope.$apply(function() {
+                            scope.$eval(attrs.onTouch);
+                        });
+                    });
+                }
+            };
+        });
+
+    app.controller('demoCtrl', function($scope) {
+        $scope.messages = [];
+        $scope.clickedOrTouched = function(item) {
+            $scope.messages.push(item);
+        };
+    });
+</script>
+</body>
+
+</html>
