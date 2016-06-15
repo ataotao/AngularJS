@@ -1,0 +1,58 @@
+<!doctype html>
+<html ng-app="app">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>angularjs</title>
+        <style type="text/css">
+            .icon-tick {
+                background-color: red;
+            }
+            .icon-loops {
+                background-color: gray;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <hr/>
+        <div ng-controller="customerCtr">
+            <div ng-repeat="val in arr" ng-click="btn($index +1)" ng-class="{true:'active' , false:'remove'}[val.tj == true]">
+                {{val.tj}}
+                {{$index + 1}}
+            </div>
+        </div>
+
+        <script src="http://192.168.0.118/git/car2go_h5/Buyers_htmlV3.0/resource/AngularJS/angular.min.js"></script>
+        <script type="text/javascript">
+            var app = angular.module('app', []);
+            app.controller('customerCtr', [
+                '$scope',
+                '$filter',
+                function($scope, $filter) {
+                    $scope.arr = [];
+                    for (var i = 1, j = 2; i <= 5; i++) {
+                        if (i <= j) {
+                            $scope.arr.push({"tj": true})
+                        } else {
+                            $scope.arr.push({"tj": false})
+                        }
+                    }
+                    console.log($scope.arr)
+                    $scope.btn = function(inx) {
+                        console.log()
+                        $scope.arr = [];
+                        for (var i = 1, j = inx; i <= 5; i++) {
+                            if (i <= j) {
+                                $scope.arr.push({"tj": true})
+                            } else {
+                                $scope.arr.push({"tj": false})
+                            }
+                        }
+                    }
+                }
+            ]);
+        </script>
+    </body>
+</html>
