@@ -1,3 +1,4 @@
+@@ -0,0 +1,68 @@
 <!doctype html>
 <html ng-app="app">
 
@@ -11,7 +12,6 @@
             .icon-loops {
                 background-color: gray;
             }
-
 
         </style>
     </head>
