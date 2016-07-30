@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS入门学习</title>
+    <script type="text/javascript" src="../js/angular.min.js"></script>
+</head>
+<body>
+<hello-world></hello-world>
+</body>
+<script type="text/javascript">
+var app = angular.module('myApp', []);
+app.directive('helloWorld', function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'hello.html',
+        replace: true
+    };
+});
+</script>
+<script type='text/ng-template' id='hello.html'>
+          <div><h1>Hi 我是Atao~~~</h1></div>
+</script>
+</html>

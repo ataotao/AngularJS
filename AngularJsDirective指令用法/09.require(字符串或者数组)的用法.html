@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS入门学习</title>
+    <script type="text/javascript" src="../js/angular.min.js"></script>
+</head>
+<body>
+<h3>require(字符串或者数组)</h3>
+<p>字符串代表另一个指令的名字，它将会作为link函数的第四个参数。具体用法我们可以举个例子说明。假设现在我们要编写两个指令，两个指令中的link链接函数中（link函数后面会讲）存在有很多重合的方法，这时候我们就可以将这些重复的方法写在第三个指令的controller中（上面也讲到controller经常用来提供指令间的复用行为）然后在这两个指令中，require这个拥有controller字段的的指令（第三个指令）</p>
+
+<p>最后通过link链接函数的第四个参数就可以引用这些重合的方法了。</p>
+
+  <outer-directive>  
+     <inner-directive></inner-directive>  
+     <inner-directive2></inner-directive2>  
+  </outer-directive>  
+
+<script>
+ var app = angular.module('myApp', []);  
+    app.directive('outerDirective', function() {  
+          return {  
+               scope: {},  
+               restrict: 'AE',  
+               controller: function($scope) {        
+                  this.say = function(someDirective) {   
+                     console.log('Got:' + someDirective.message);  
+                  };  
+               }  
+           };  
+    });  
+    app.directive('innerDirective', function() {  
+          return {  
+               scope: {},  
+               restrict: 'AE',  
+               require: '^outerDirective',  
+               link: function(scope, elem, attrs, controllerInstance) {  
+                       scope.message = "Hi,leifeng";  
+                       controllerInstance.say(scope);  
+               }  
+          };  
+    });  
+    app.directive('innerDirective2', function() {  
+          return {  
+               scope: {},  
+               restrict: 'AE',  
+               require: '^outerDirective',  
+               link: function(scope, elem, attrs, controllerInstance) {  
+                       scope.message = "Hi,shushu";  
+                       controllerInstance.say(scope);  
+               }  
+          };  
+    });  
+
+</script>
+<p>上面例子中的指令innerDirective和指令innerDirective2复用了定义在指令outerDirective的controller中的方法</p>
+
+<p>也进一步说明了，指令中的controller是用来让不同指令间通信用的。</p>
+
+<p>另外我们可以在require的参数值加上下面的某个前缀，这会改变查找控制器的行为：</p>
+
+<p>（1）没有前缀，指令会在自身提供的控制器中进行查找，如果找不到任何控制器，则会抛出一个error</p>
+
+<p>（2）？如果在当前的指令没有找到所需的控制器，则会将null传给link连接函数的第四个参数</p>
+
+<p>（3）^如果在当前的指令没有找到所需的控制器，则会查找父元素的控制器</p>
+
+<p>（4）?^组合</p>
+</body>
+
+</html>

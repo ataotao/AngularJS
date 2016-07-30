@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS入门学习</title>
+    <script type="text/javascript" src="../js/angular.min.js"></script>
+</head>
+<body>
+<h3>transclude</h3>
+<p>
+如果不想让指令内部的内容被模板替换，可以设置这个值为true。一般情况下需要和ngTransclude指令一起使用。 比如：template:"<div>hello every (<\div ng-transclude><\/div><\/div>)"，这时，指令内部的内容会嵌入到ng-transclude这个div中。也就是变成了<div>hello every <div>这是指令内部的内容</div></div>。默认值为false；这个配置选项可以让我们提取包含在指令那个元素里面的内容，再将它放置在指令模板的特定位置。当你开启transclude后，你就可以使用ng-transclude来指明了应该在什么地方放置transcluded内容
+</p>
+<p style="color:red;">
+    如果指令使用了transclude参数，那么在控制器无法正常监听数据模型的变化了。建议在链接函数里使用$watch服务。
+</p>
+<div sidebox title="Links">
+         <ul>
+             <li>First link</li>
+             <li>Second link</li>
+         </ul>
+</div>
+
+<script type="text/javascript">
+    var app = angular.module('myApp', []);
+    app.directive('sidebox', function() {
+        return {
+            restrict: 'EA',
+            scope: {
+                title: '@'
+            },
+            transclude: true,
+            template: '<div class="sidebox">' +
+                            '<div class="content">' +
+                                '<h2 class="header">{{ title }}</h2>' +
+                                '<span class="content" ng-transclude>' +
+                                '</span>' +
+                            '</div>' +
+                        '</div>'
+        };
+    });
+</script>
+</html>

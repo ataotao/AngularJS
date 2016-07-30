@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS入门学习</title>
+    <script type="text/javascript" src="../js/angular.min.js"></script>
+</head>
+<body>
+<hello-world></hello-world>
+<hello-world2 title = '我是第二个directive'></hello-world2>
+</body>
+<script type="text/javascript">
+    var app = angular.module('myApp', []);
+    app.directive('helloWorld', function() {
+        return {
+            restrict: 'E',
+            template: '<div><h1>Hi 我是Atao~~~</h1></div>',
+            replace: true
+        };
+    });
+    app.directive("helloWorld2",function(){
+        return{
+             restrict:'EAC',
+             template: function(tElement,tAttrs){
+                var _html = '';
+                _html += '<div>' +'hello '+tAttrs.title+'</div>';
+                return _html;
+             }
+         };
+    });
+</script>
+</html>

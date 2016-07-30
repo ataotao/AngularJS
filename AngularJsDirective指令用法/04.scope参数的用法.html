@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS入门学习</title>
+    <script type="text/javascript" src="../js/angular.min.js"></script>
+</head>
+<body>
+<h1>tip：当你想要创建一个可重用的组件时隔离作用域是一个很好的选择，通过隔离作用域我们确保指令是‘独立’的,并可以轻松地插入到任何HTML app中，并且这种做法防止了父作用域被污染；</h1>
+<h2>scope:false</h2>
+<p>
+    当为false时候，儿子继承父亲的值，改变父亲的值，儿子的值也随之变化，反之亦如此。（继承不隔离）
+</p>
+<div ng-controller='MainController1'>
+        父亲:{{name}}<input ng-model="name" />
+        <div my-directive1></div>
+</div>
+
+<h2>scope:true</h2>
+<p>
+    当为true时候，儿子继承父亲的值，改变父亲的值，儿子的值随之变化，但是改变儿子的值，父亲的值不变。（继承隔离）
+</p>
+<div ng-controller='MainController2'>
+        父亲:{{name}}<input ng-model="name" />
+        <div my-directive2></div>
+</div>
+
+<h2>scope:{}</h2>
+<p>
+    当为{}时候，没有继承父亲的值，所以儿子的值为空，改变任何一方的值均不能影响另一方的值。（不继承隔离）
+</p>
+<div ng-controller='MainController3'>
+        父亲:{{name}}<input ng-model="name" />
+        <div my-directive3></div>
+</div>
+
+</body>
+<script type="text/javascript">
+var app = angular.module('myApp', []);
+
+//scope:false
+app.controller('MainController1', function ($scope) {
+           $scope.name = 'Atao';
+});
+app.directive('myDirective1', function () {
+    return {
+        restrict: 'EA',
+        scope:false,
+        template: '<div>儿子:{{ name }}<input ng-model="name"/></div>'
+    };
+});
+
+//scope:true
+app.controller('MainController2', function ($scope) {
+           $scope.name = 'Atao';
+});
+app.directive('myDirective2', function () {
+    return {
+        restrict: 'EA',
+        scope:true,
+        template: '<div>儿子:{{ name }}<input ng-model="name"/></div>'
+    };
+});
+
+//scope:{}
+app.controller('MainController3', function ($scope) {
+           $scope.name = 'Atao';
+});
+app.directive('myDirective3', function () {
+    return {
+        restrict: 'EA',
+        scope:{},
+        template: '<div>儿子:{{ name }}<input ng-model="name"/></div>'
+    };
+});
+
+
+
+</script>
+</html>

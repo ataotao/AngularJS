@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS入门学习</title>
+    <script type="text/javascript" src="../js/angular.min.js"></script>
+</head>
+<body>
+<h3>controller 可以是一个字符串或者函数。</h3>
+<p>
+若是为字符串，则将字符串当做是控制器的名字，来查找注册在应用中的控制器的构造函数
+</p>
+
+<div my-directive1></div>
+<script type="text/javascript">
+    var app =  angular.module('myApp', []);
+    app.directive('myDirective1', function() {
+        return {
+            restrict: 'A', // 始终需要
+            transclude: true,
+            template: '<div class="sidebox" ng-bind="testModel"></div>',
+            controller: 'SomeController1'
+        }
+    });
+    // 应用中其他的地方，可以是同一个文件或被index.html包含的另一个文件
+    app.controller('SomeController1', function($scope, $element, $attrs, $transclude) {
+        // 控制器逻辑放在这里
+        $scope.testModel = "123456";
+    });
+</script>
+
+<p>
+    ---------------------------------------
+</p>
+<p>
+    也可以直接在指令内部的定义为匿名函数，同样我们可以再这里注入任何服务（$log,$timeout等等）
+</p>
+<div my-directive2></div>
+
+<script type="text/javascript">
+    app.directive('myDirective2', function() {
+        return {
+            restrict: 'A',
+            transclude: true,
+            template: '<div class="sidebox" ng-bind="testModel1"></div>',
+            controller:function($scope, $element, $attrs, $transclude) {
+                 // 控制器逻辑放在这里
+                 $scope.testModel1 = "7890";
+            }
+        }
+
+    });
+</script>
+<p>
+    ----------------------------------------
+</p>
+
+<p>另外还有一些特殊的服务（参数）可以注入</p>
+
+<p>（1）$scope，与指令元素相关联的作用域</p>
+
+<p>（2）$element，当前指令对应的 元素</p>
+
+<p>（3）$attrs，由当前元素的属性组成的对象</p>
+
+<p>（4）$transclude，嵌入链接函数，实际被执行用来克隆元素和操作DOM的函数</p>
+
+<p>注意： 除非是用来定义一些可复用的行为，一般不推荐在这使用。
+         指令的控制器和link函数（后面会讲）可以进行互换。区别在于，控制器主要是用来提供可在指令间复用的行为但link链接函数只能在当前内部指令中定义行为，且无法再指令间复用。</p>
+
+
+<hello mycolor ="red">我是Atao </hello>  
+<script>
+app.directive('hello', function() {  
+    return {  
+        restrict: 'EA',  
+        transclude: true, //注意此处必须设置为true  
+        controller:  
+        function ($scope, $element, $attrs, $transclude, $log) {  //在这里你可以注入你想注入的服务  
+            $transclude(function (clone) {  
+                var a = angular.element('<p>');  
+                a.css('color', $attrs.mycolor);  
+                a.text(clone.text());  
+                $element.append(a);  
+            });  
+            $log.info("hello everyone");  
+        }  
+    };  
+});
+</script>
+<p>并且在控制台下输出hello everyone</p>
+<p>让我们看看$transclude();在这里，它可以接收两个参数，第一个是$scope，作用域，第二个是带有参数clone的回调函数。而这个clone实际上就是嵌入的内容（经过jquery包装），可以在它上做很多DOM操作。</p>
+<p>它还有最简单的用法就是</p>
+<my-site>
+    <span style="color:red;">哈哈</span>
+</my-site>
+<script>
+app.directive('mySite', function () {  
+     return {  
+         restrict: 'EA',  
+         transclude: true,  
+         controller:  
+         function ($scope, $element,$attrs,$transclude,$log) {  
+             var a = $transclude(); //$transclude()就是嵌入的内容  
+             $element.append(a);  
+         }  
+     };  
+ });  
+</script>
+<p>注意：使用$transclude会生成一个新的作用域。</p>
+<p>默认情况下，如果我们简单使用$transclude()，那么默认的其作用域就是$transclude生成的作用域</p>
+
+<p>但是如果我们使用$transclude($scope,function(clone){}),那么作用域就是directive的作用域了</p>
+
+<p>那么问题又来了。如果我们想使用父作用域呢</p>
+
+<p>可以使用$scope.$parent</p>
+
+<p>同理想要一个新的作用域也可以使用$scope.$parent.new()；</p>
+</body>
+
+</html>

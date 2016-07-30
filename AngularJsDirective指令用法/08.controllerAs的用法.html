@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS入门学习</title>
+    <script type="text/javascript" src="../js/angular.min.js"></script>
+</head>
+<body>
+<h3>controllerAs 这个选项的作用是可以设置你的控制器的别名</h3>
+  <!--<div ng-controller="demoController as demo">  
+       {{demo.title}}  
+  </div>  -->
+<div my-site>
+    
+</div>
+
+<script>
+var app = angular.module("myApp",[]); 
+app.controller("demoController",[function(){  
+    this.title = "angualr";  
+}]);
+
+app.directive('mySite', function () {  
+     return {  
+         restrict: 'EA',  
+         transclude: true,  
+         template:'<span ng-bind="demo.title"></span>',
+         controllerAs:'demo',
+         controller:'demoController'
+     };  
+ });  
+
+</script>
+</body>
+
+</html>

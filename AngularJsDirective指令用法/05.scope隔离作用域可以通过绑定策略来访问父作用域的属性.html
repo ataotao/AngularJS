@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS入门学习</title>
+    <script type="text/javascript" src="../js/angular.min.js"></script>
+</head>
+<body>
+<h1>隔离作用域可以通过绑定策略来访问父作用域的属性</h1>
+<p>
+    directive 在使用隔离 scope 的时候，提供了三种方法同隔离之外的地方交互。这三种分别是
+</p>
+<ul>
+    <li>@ 绑定一个局部 scope 属性到当前 dom 节点的属性值。结果总是一个字符串，因为 dom 属性是字符串。</li>
+    <li>& 提供一种方式执行一个表达式在父 scope 的上下文中。如果没有指定 attr 名称，则属性名称为相同的本地名称。</li>
+    <li>= 通过 directive 的 attr 属性的值在局部 scope 的属性和父 scope 属性名之间建立双向绑定。</li>
+</ul>
+
+<h3>@ 局部 scope 属性</h3>
+<p>@ 方式局部属性用来访问 directive 外部环境定义的字符串值，主要是通过 directive 所在的标签属性绑定外部字符串值。这种绑定是单向的，即父 scope 的绑定变化，directive 中的 scope 的属性会同步变化，而隔离 scope 中的绑定变化，父 scope 是不知道的。</p>
+<p>如下示例：directive 声明未隔离 scope 类型，并且使用@绑定 name 属性，在 directive 中使用 name 属性绑定父 scope 中的属性。当改变父 scope 中属性的值的时候，directive 会同步更新值，当改变 directive 的 scope 的属性值时，父 scope 无法同步更新值。</p>
+</p>
+<p style="color:red;">
+    可以看到父scope上的内容发生改变，子scope同时发生改变。而子scope上的内容发生改变。不影响父scope上的内容！
+</p>
+
+<div ng-controller="myController">
+   <div class="result">
+       <div>父scope：
+           <div>Say：{{name}}<br>改变父scope的name：<input type="text" value="" ng-model="name"/></div>
+       </div>
+       <div>隔离scope：
+           <div isolated-directive name="{{name}}"></div>
+       </div>
+        <div>隔离scope（不使用父scope {{name}}）：
+             <div isolated-directive name="name"></div>
+         </div>
+   </div>
+   <script type="text/javascript">
+   var app = angular.module('myApp', []);
+   app.controller("myController", function ($scope) {
+       $scope.name = "hello world";
+   });
+   app.directive("isolatedDirective", function () {
+       return {
+           scope: {
+               name: "@"
+           },
+           template: 'Say：{{name}} <br>改变隔离scope的name：<input type="text" value="" ng-model="name" class="ng-pristine ng-valid">'
+       };
+   });
+   </script>
+<p>
+    ---------------------------------------------------
+</p>
+<h3>
+    = 局部 scope 属性
+</h3>
+<p>
+    = 通过 directive 的 attr 属性的值在局部 scope 的属性和父 scope 属性名之间建立双向绑定。
+    意思是，当你想要一个双向绑定的属性的时候，你可以使用=来引入外部属性。无论是改变父 scope 还是隔离 scope 里的属性，父 scope 和隔离 scope 都会同时更新属性值，因为它们是双向绑定的关系。
+</p>
+<div ng-controller="myController1">
+    <div>父scope：
+        <div>Say：{{userBase.name}}<br>改变父scope的name：<input type="text" value="" ng-model="userBase.name"/></div>
+    </div>
+    <div>隔离scope：
+        <div isolated-directive1 user="userBase"></div>
+    </div>
+</div>
+<script type="text/javascript">
+app.controller("myController1", function ($scope) {
+   $scope.userBase = {
+       name: 'hello',
+       id: 1
+   };
+});
+app.directive("isolatedDirective1", function () {
+   return {
+       scope: {
+           user: "="
+       },
+       template: 'Say：{{user.name}} <br>改变隔离scope的name：<input type="buttom" value="" ng-model="user.name"/>'
+   }
+})
+</script>
+<p>
+    ----------------------------------------------------------------
+</p>
+<h3>& 局部 scope 属性</h3>
+<p>
+    & 方式提供一种途经是 directive 能在父 scope 的上下文中执行一个表达式。此表达式可以是一个 function。
+比如当你写了一个 directive，当用户点击按钮时，directive 想要通知 controller，controller 无法知道 directive 中发生了什么，也许你可以通过使用 angular 中的 event 广播来做到，但是必须要在 controller 中增加一个事件监听方法。
+最好的方法就是让 directive 可以通过一个父 scope 中的 function，当 directive 中有什么动作需要更新到父 scope 中的时候，可以在父 scope 上下文中执行一段代码或者一个函数。
+</p>
+ <div  ng-controller="myController2">
+        <div>父scope：
+            <div>Say：{{value}}</div>
+        </div>
+        <div>隔离scope：
+            <div isolated-directive2 action="click()"></div>
+        </div>
+</div>
+
+<script type="text/javascript">
+ app.controller("myController2", function ($scope) {
+        $scope.value = "hello world";
+        $scope.click = function () {
+            $scope.value = Math.random();
+        };
+})
+app.directive("isolatedDirective2", function () {
+    return {
+        scope: {
+            action: "&"
+        },
+        template: '<input type="button" value="在directive中执行父scope定义的方法" ng-click="action()"/>'
+    }
+})
+</script>
+</html>
