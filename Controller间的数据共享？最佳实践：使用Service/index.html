@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="../js/angular.min.js"></script>
+  <meta charset="utf-8">
+  <title>Component Communication</title>
+  <style>
+    body {
+    display: flex;
+    }
+    pane-one, pane-two {
+    margin: 0.5em;
+    }
+    pane-two {
+    border-left: 1px solid #555;
+    }
+  </style>
+</head>
+<body ng-app="demo">
+  <pane-one></pane-one>
+  <pane-two></pane-two>
+  <script>
+  angular.module('demo', [])
+  .directive('paneOne', function(sharedList) {
+    return {
+      restrict: 'E',
+      scope: {},
+      template: [
+        '<div>',
+          '<input ng-model="p1.text">',
+          '<button ng-click="p1.addToList()">Add To List</button>',
+        '</div>'
+      ].join(''),
+      controllerAs: 'p1',
+      // Inject sharedList
+      controller: function(sharedList) {
+        var vm = this;
+        vm.text = "";
+        vm.addToList = function() {
+          // Stuff the item into the shared list
+          sharedList.addItem(vm.text);
+          vm.text = "";
+        };
+      }
+    };
+  })
+  .directive('paneTwo', function(sharedList) {
+    return {
+      restrict: 'E',
+      scope: {},
+      template: [
+        '<ul>',
+          '<li ng-repeat="item in p2.listItems">{{item}}</li>',
+        '</ul>'
+      ].join(''),
+      controllerAs: 'p2',
+      // Inject sharedList
+      controller: function(sharedList) {
+        var vm = this;
+        // Read the data
+        vm.listItems = sharedList.getList();
+      }
+    };
+  })
+  .factory('sharedList', function() {
+    var list = [];
+
+    return {
+      addItem: addItem,
+      getList: getList
+    };
+
+    function addItem(item) {
+      list.push(item);
+    }
+
+    function getList() {
+      return list;
+    }
+  });
+  </script>
+</body>
+</html>
