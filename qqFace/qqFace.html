@@ -25,8 +25,8 @@
 <body>
 	<div ng-controller="chatController">
 		<div id="show-bar" class="show-bar" ng-bind-html="face | msgFilter"></div>
-        <div face-bar></div>
-        <textarea ng-model="content"></textarea>
+        <div face-bar="18"></div>
+        这里显示：<textarea ng-model="content"></textarea>
         <button ng-click="showFaceBar()">显示表情</button>
 	</div>
     <script type="text/javascript" src="angular.min.js"></script>
@@ -49,22 +49,22 @@
                     if(!dataService.faceDatas) {
                         dataService.faceFn(function(res, status, headers, config){
 
-                                var faceGroup = function (array, size) {
-                                    var arr = [];
-                                    for (var x = 0; x < Math.ceil((array.length-1) / size); x++) {
-                                        var start = x * size;
-                                        var end = start + size;
-                                        arr.push(array.slice(start, end));
-                                    }
-                                    return arr;
-                                };
+                            var faceGroup = function (array, size) {
+                                var arr = [];
+                                for (var x = 0; x < Math.ceil((array.length-1) / size); x++) {
+                                    var start = x * size;
+                                    var end = start + size;
+                                    arr.push(array.slice(start, end));
+                                }
+                                return arr;
+                            };
 
-                                dataService.faceDatas = scope.faceDatas = faceGroup(res.groups, 10);
+                            dataService.faceDatas = scope.faceDatas = faceGroup(res.groups, attrs.faceBar);
 
-                                console.log(scope.faceDatas);
-                        }, function(res, status, headers, config){
-                            console.log('error');
-                        });
+                            console.log(attrs.faceBar);
+                    }, function(res, status, headers, config){
+                        console.log('error');
+                    });
                     }
 
                     scope.getFace = function(e){
@@ -105,12 +105,13 @@
 
     	app.controller('chatController', ['$scope', function($scope){
             $scope.showFaceBar = function(){
+                $scope.showFace = true;
                 $scope.face = $scope.content;
             };
     	}]);
     </script>
     <script type="text/ng-template" id="face.html">
-        <ul class="ulDom" ng-click="getFace($event)" ng-repeat="items in faceDatas">
+        <ul class="ulDom" ng-click="getFace($event)" ng-repeat="items in faceDatas" ng-if="showFace">
             <li ng-repeat="item in items">
                 <img ng-src="{{item.url}}" alt="{{item.name}}" title="{{item.name}}" />
             </li>
