@@ -1,0 +1,25 @@
+#rl_bq{z-index: 9999; display: none; position: absolute; width: 100%; left: 0; top: 0; background-color: #f1f1f1; text-align: left; height: 210px;}
+.rl_exp{
+	margin:0 auto;position:absolute; width:320px; padding:10px 0; overflow: hidden;background-color: #f1f1f1;zoom:1;z-index:100;display: none; 
+}
+/*隐藏浏览器的outline,兼容IE。*/
+.rl_exp a{outline:none;blr:expression(this.onFocus=this.blur());}
+.rl_exp ul{list-style:none;margin:0 0 10px 0;padding:0 0 0 10px;}
+.rl_exp ul li{display:list-item;}
+.rl_exp ul.rl_exp_tab{margin:-20px -20px 20px;padding:12px 13px 0;list-style:none; border-bottom:1px solid #d0d0d0;border-top:1px solid #fff;
+	background: -moz-linear-gradient(center top , #F6F6F6, #E5E5E5) repeat scroll 0 0 transparent;	background: -webkit-gradient(linear,center top ,center bottom,from(#f6f6f6),to(#E5E5E5)) repeat scroll 0 0 transparent;	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#E5E5E5');
+}
+.rl_exp ul.rl_exp_tab li{float:left;margin-right:10px;display:list-item;text-align: -webkit-match-parent;}
+.rl_exp ul.rl_exp_tab li a{
+	display: block;padding: 8px 14px;font-size:13px;text-decoration: none;color: #979797;border: 1px solid #c3c3c3;
+	margin-bottom: -1px; background: #E4E4E4;text-shadow: #fff 0 1px;}
+.rl_exp ul.rl_exp_tab li a.selected{zoom:1;background: #fff;border-bottom: 1px solid #fff;box-shadow: none;text-shadow: none;}
+
+/*表情内容样式*/
+.rl_exp_main{margin:0;padding:0;}
+.rl_exp_item{cursor:pointer;float:left; height:36px;width:36px;overflow:hidden;margin:13px 5px;text-align:center;}
+.rl_exp_item:hover{position:relative;z-index:2;}
+.rl_exp_item img{display:inline-block;*zoom:1;border:0;}
+
+
+

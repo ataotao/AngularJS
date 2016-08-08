@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>qqFace</title>
+    <style type="text/css">
+        ul,li {list-style-type: none;}
+        .ulDom {
+            display: table-cell;
+            vertical-align: top;
+            width: 320px;
+        }
+        .ulDom li {
+            display: list-item;
+            cursor: pointer;
+            float: left;
+            height: 36px;
+            width: 36px;
+            overflow: hidden;
+            margin: 0 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+	<div ng-controller="chatController">
+		<div id="show-bar" class="show-bar" ng-bind-html="face | msgFilter"></div>
+        <div face-bar></div>
+        <textarea ng-model="content"></textarea>
+        <button ng-click="showFaceBar()">显示表情</button>
+	</div>
+    <script type="text/javascript" src="angular.min.js"></script>
+    <script type="text/javascript">
+    	var app = angular.module('app', []);
+
+        app.service('dataService', ['$http', function($http){
+            this.faceFn = function(success, error){
+                $http.get('json/face.json').success(success).error(error);
+            };
+        }]);
+
+    	app.directive('faceBar', ['dataService', function(dataService){
+    		return {
+    			restricts: 'A',
+                replace: false,
+                templateUrl: 'face.html',
+    			link: function(scope, elems, attrs){
+                    scope.faceDatas = dataService.faceDatas;
+                    if(!dataService.faceDatas) {
+                        dataService.faceFn(function(res, status, headers, config){
+
+                                var faceGroup = function (array, size) {
+                                    var arr = [];
+                                    for (var x = 0; x < Math.ceil((array.length-1) / size); x++) {
+                                        var start = x * size;
+                                        var end = start + size;
+                                        arr.push(array.slice(start, end));
+                                    }
+                                    return arr;
+                                };
+
+                                dataService.faceDatas = scope.faceDatas = faceGroup(res.groups, 10);
+
+                                console.log(scope.faceDatas);
+                        }, function(res, status, headers, config){
+                            console.log('error');
+                        });
+                    }
+
+                    scope.getFace = function(e){
+                        var target = e.target;
+                        if(target && target.nodeName == "IMG") {
+                            scope.content = scope.content || '';
+                            scope.content += '[' +target.title+ ']';
+                        }
+                    };
+    			}
+    		};
+    	}]);
+
+        // 处理表情
+        app.filter('msgFilter', ['$sce', function($sce) {
+            var rl_exp = {
+                baseUrl: '',
+                dir: ['mr'],
+                text: [/*表情包title文字*/
+                    [
+                        '握手', '给力', '微笑', '没问题', '欢喜', '花心', '很棒', '爱心', '扮萌', '哈哈', '再见', '喝茶', '礼物', '拜托', '耶', '可爱', '恭喜发财', '疑问', '哈哈大笑', '害羞', '酷', '舔舌', '思考', '萌笑', '露齿笑', '捂嘴笑', '吐舌', '保密', '时钟', '囧', '神马', '调皮', '小兵'
+                    ]
+                ],
+                num: [33]
+            };
+            return function(text) {
+                if (text){
+                    // 表情过滤
+                    for (var i = -1; i < rl_exp.num[0]; i++) {
+                        var reg = new RegExp('\\[' + (rl_exp.text[0][i]) + '\\]', 'g');
+                        text = text.replace(reg, '<img src="' + rl_exp.baseUrl + 'images/' + rl_exp.dir[0] + '/' + i + '.gif" alt="' + rl_exp.text[0][i] + '" title="' + rl_exp.text[0][i] + '" />');
+                    }
+
+                    return $sce.trustAsHtml(text);
+                }
+            };
+        }]);
+
+    	app.controller('chatController', ['$scope', function($scope){
+            $scope.showFaceBar = function(){
+                $scope.face = $scope.content;
+            };
+    	}]);
+    </script>
+    <script type="text/ng-template" id="face.html">
+        <ul class="ulDom" ng-click="getFace($event)" ng-repeat="items in faceDatas">
+            <li ng-repeat="item in items">
+                <img ng-src="{{item.url}}" alt="{{item.name}}" title="{{item.name}}" />
+            </li>
+        </ul>
+    </script>
+</body>
+</html>
