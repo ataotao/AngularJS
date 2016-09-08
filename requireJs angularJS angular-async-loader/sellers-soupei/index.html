@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title ng-bind="$state.current.pageTitle"></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta name="renderer" content="webkit">
+    <!-- BEGIN bootstrap引用样式 -->
+    <link href="../common/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- END bootstrap引用样式 -->
+    <!-- BEGIN 通用布局样式 -->
+    <link href="resource/css/custom.css" rel="stylesheet">
+    <!-- END 通用布局样式 -->
+    <!--BEGIN Icon图标-->
+    <link rel="shortcut icon" href="../common/img/favicon.ico" />
+    <!--END Icon图标-->
+    <!--[if lt IE 9]>
+      <script src="../common/js/html5shiv.min.js"></script>
+      <script src="../common/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div id="content">
+        <p>
+            当前页面 {{$state.current.pageTitle}}
+        </p>
+        <p>
+            导航<a ui-sref="home">首页</a> | <a ui-sref="login">登录</a>
+        </p>
+        <div ui-view></div>
+    </div>
+    <!--bottom js -->
+    <!--
+    <script src="../common/AngularJS/angular.min.js" type="text/javascript"></script>
+    <script src="../common/AngularJS/angular-ui-router.min.js" type="text/javascript"></script>
+    <script src="resource/js/utils.js" type="text/javascript"></script>
+    <script src="resource/js/config.js" type="text/javascript"></script>
+    <script src="resource/js/home.js" type="text/javascript"></script>
+    -->
+    <script src="../common/requirejs/require.js"></script>
+    <script src="resource/js/appBoot.js"></script>
+</body>
+
+</html>
