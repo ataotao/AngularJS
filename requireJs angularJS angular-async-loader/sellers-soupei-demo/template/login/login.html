@@ -1,0 +1,12 @@
+<p>Welcome to <b ng-bind="login.page"></b></p>
+<input type="text" ng-model="login.page">
+<p>&nbsp;</p>
+<button type="button" class="btn btn-info" ng-click="login.openModal()">打开模态框</button>
+<!-- 通用模态框 -->
+<vm-modal modal="login.modal" action="login.isOk()">
+    <span ng-bind-html="login.modal.body | to_trusted"></span>
+</vm-modal>
+<!-- 通用提示条 -->
+<vm-tip tip="login.tip">
+    <span ng-bind-html="login.tip.body | to_trusted"></span>
+</vm-tip>

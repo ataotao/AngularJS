@@ -1,0 +1,10 @@
+<p>Welcome to <b ng-bind="home.page"></b></p>
+<input type="text" ng-model="home.page">
+<h2>遍历列表 ---------------</h2>
+<div ng-repeat="item in home.userList track by $index">
+    <span ng-bind="item.name"></span> <span ng-bind="item.email"></span>
+</div>
+<h3>遍历列表 ---------------</h3>
+
+<h1 class="text-danger" ng-bind="home.obj.state"></h1>
+<button type="button" class="btn btn-info" ng-click="home.changeOutput()">改变状态</button>

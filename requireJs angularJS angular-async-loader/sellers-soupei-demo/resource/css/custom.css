@@ -1,0 +1,137 @@
+/*
+全局样式
+*/
+/**************************
+   Ataotao tzvuf@163.com
+**************************/
+/* 修复Internet Explorer 10 并没有对 屏幕的宽度 和 视口（viewport）的宽度 进行区分 */
+@-ms-viewport { width: device-width;}
+
+/* 通用设置 */
+body { font-family: "\5FAE\8F6F\96C5\9ED1";}
+a:focus{outline:0!important;}
+button{outline:0!important;}
+ul{padding: 0; margin: 0; list-style: none;}
+s{text-decoration: none;}
+.rel{ position: relative;}
+.cur{cursor: pointer;}
+.disabled{cursor: not-allowed !important;}
+.ellipsis{ overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.opacity0{opacity:0;}
+.opacity1{opacity:1;}
+.bgWhite{background-color: #FFF;}
+.per50{width: 50%; margin: 0 auto;}
+
+.f12{ font-size: 12px;}
+.f14{ font-size: 14px;}
+.f16{ font-size: 16px;}
+.f18{ font-size: 18px;}
+.f20{ font-size: 20px;}
+.f30{ font-size: 30px;}
+.f32{ font-size: 32px; font-weight:100;}
+.f40{ font-size: 40px; font-weight:100; }
+
+.text-white {color: #FFF;}
+a.text-white:hover,
+a.text-white:focus {color: #CCC;}
+.text-gray{color:#666;}
+
+.text-red {color: red;}
+a.text-red:hover,
+a.text-red:focus {color: #C00;}
+
+.text-danger {color: #ed242d;}
+a.text-danger:hover,
+a.text-danger:focus {color: #ed242d;}
+
+.text-primary {color: #0092c8;}
+a.text-primary:hover,
+a.text-primary:focus {color: #0092c8;}
+
+.text-black{color:#333;}
+
+.m-t-5{ margin-top: 5px;}
+.m-t-10{ margin-top: 10px;}
+.m-t-15{ margin-top: 15px;}
+.m-t-20{ margin-top: 20px;}
+.m-t-35{ margin-top: 35px;}
+.m-t-55{ margin-top: 55px;}
+.m-t-5{ margin-bottom: 5px;}
+.m-b-10{ margin-bottom: 10px;}
+.m-b-15{ margin-bottom: 15px;}
+.m-b-20{ margin-bottom: 20px;}
+.m-b-35{ margin-bottom: 35px;}
+.m-b-55{ margin-bottom: 55px;}
+.m-tb-10{margin-top: 10px; margin-bottom: 10px;}
+.m-tb-15{margin-top: 15px; margin-bottom: 15px;}
+.m-tb-25{margin-top: 25px; margin-bottom: 25px;}
+.m-r-5{ margin-right: 5px;}
+.m-r-10{ margin-right: 10px;}
+.m-r-25{ margin-right: 25px;}
+.m-l-5{margin-left: 5px;}
+.m-l-10{margin-left: 10px;}
+.p-0{padding:0;}
+.p-l-0{padding-left: 0;}
+.p-l-10{padding-left: 10px;}
+.p-l-20{padding-left: 20px;}
+.p-l-35{padding-left: 35px;}
+.p-b-0{padding-bottom: 0;}
+.p-b-5{padding-bottom: 5px;}
+.p-b-10{padding-bottom: 10px;}
+.p-b-15{padding-bottom: 15px;}
+.p-t-0{padding-top: 0;}
+.p-t-5{padding-top: 5px;}
+.p-t-10{padding-top: 10px;}
+.p-t-15{padding-top: 15px;}
+.p-tb-10{padding-top: 10px; padding-bottom: 10px;}
+
+.hei5{ height: 5px;}
+.hei10{ height: 10px;}
+.hei20{ height: 20px;}
+.hei35{ height: 35px;}
+.hei45{ height: 45px;}
+.hei50{ height: 50px;}
+.hei55{ height: 55px;}
+.hei60{ height: 60px;}
+.hei65{ height: 65px;}
+.hei80{ height: 80px;}
+.hei95{ height: 95px;}
+
+.b-b1{border-bottom: solid 1px #d4d4d4;}
+.b-t1d{border-top: dashed 1px #d4d4d4;}
+
+.btn-blue { color: #FFF;  background-color: #0092c8;  border-color: #0092c8;}
+.btn-blue:focus,.btn-blue.focus {  color: #FFF;  background-color: #0092c8;  border-color: #0092c8;}
+.btn-blue:hover {  color: #FFF;  background-color: #00749f;  border-color: #00749f;}
+.btn-blue:active,.btn-blue.active{ color: #FFF;  background-color: #0092c8;  border-color: #0092c8;}
+.btn-blue:active:hover,.btn-blue.active:hover,.btn-blue:active:focus,.btn-blue.active:focus,.btn-blue:active.focus,.btn-blue.active.focus{ color: #FFF; background-color: #0092c8; border-color: #0092c8;}
+/* animation */
+/*旋转*/
+.glyphicon-spin {-webkit-animation: spin 2s infinite linear; -moz-animation: spin 2s infinite linear; -o-animation: spin 2s infinite linear; animation: spin 2s infinite linear;}
+@-moz-keyframes spin {0% {-moz-transform: rotate(0deg);}100% {-moz-transform: rotate(359deg);}}
+@-webkit-keyframes spin { 0% {-webkit-transform: rotate(0deg);}100% {-webkit-transform: rotate(359deg);}}
+@-o-keyframes spin {0% {-o-transform: rotate(0deg);}100% {-o-transform: rotate(359deg);}}
+@-ms-keyframes spin {0% {-ms-transform: rotate(0deg);}100% {-ms-transform: rotate(359deg);}}
+@keyframes spin {0% {transform: rotate(0deg);}100% {transform: rotate(359deg);}}
+.spinner {  -moz-border-bottom-colors: none;  -moz-border-left-colors: none;  -moz-border-right-colors: none;  -moz-border-top-colors: none;  animation: 0.5s linear 0s normal none infinite running spin;  border-color: #FFF transparent transparent #FFF;  border-image: none;  border-radius: 50%;  border-style: solid;  border-width: 2px;
+    display: inline-block;  height: 16px;  width: 16px; vertical-align: middle; top:-2px; position: relative;}
+/*淡入淡出*/
+.fadeInOut{   opacity:0;  -webkit-animation-name: fadeinoutanimation; -webkit-animation-timing-function: ease-in-out; -webkit-animation-iteration-count: infinite;  -webkit-animation-duration: 3s; -webkit-animation-direction: alternate; -webkit-animation-delay:0.5s;  -webkit-animation-fill-mode: forwards;}
+@-webkit-keyframes fadeinoutanimation {
+    0% {opacity:0;}
+    25% {opacity:1;}
+    50% {opacity: 1;}
+    75% {opacity:0;}
+}
+/* 模态框 提示条*/
+.modal-backdrop{z-index: 0;}
+.vmTip{position:absolute; background-color:rgba(0,0,0,0.5); width:300px; color:#FFF; left: 50%; top:50%; margin:-50px 0 0 -150px; border-radius:15px; text-align: center; padding:15px 0; }
+/* 通用设置 end*/
+
+/*图标*/
+.iron{background-image: url("../img/iron_sprites.png?20160813"); background-repeat:no-repeat; vertical-align: middle; display: inline-block;}
+.ironUser{background-position:-300px 0; width: 25px; height: 18px;}
+
+
+
+.content-view{margin:0 auto;}
