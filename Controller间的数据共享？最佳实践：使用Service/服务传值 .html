@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="http://192.168.1.118/git/h5_v3.0/common/AngularJS/angular.min.js"></script>
+        <meta charset="utf-8">
+        <title></title>
+
+    </head>
+    <body ng-app="demo">
+
+        <div ng-controller="one as p1">
+            <div>
+                <input ng-model="p1.text">
+                <button ng-click="p1.add()">添加</button>
+            </div>
+        </div>
+
+        <div ng-controller="two as p2">
+            <ul>
+                <li ng-repeat="item in p2.listItems track by $index">{{item}}</li>
+            </ul>
+        </div>
+        <script>
+
+            angular.module('demo', [])
+
+            .controller('one', [ 'sharedList', function(sharedList) {
+                    var vm = this;
+                    vm.text = "";
+                    vm.add = function() {
+                        sharedList.set(vm.text);
+                        vm.text = "";
+                    };
+            }])
+
+            .controller('two', ['sharedList', function(sharedList) {
+                    var vm = this;
+                    vm.listItems = sharedList.get();
+            }])
+
+            .factory('sharedList', function() {
+                var list = [];
+
+                return {
+                  set: set,
+                  get: get
+                };
+
+                function set(item) {
+                    list.push(item);
+                }
+
+                function get() {
+                    return list;
+                }
+            });
+
+        </script>
+    </body>
+</html>
