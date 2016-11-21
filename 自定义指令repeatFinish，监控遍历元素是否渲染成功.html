@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+<script src="http://192.168.1.118/git/h5_v3.0/common/AngularJS/angular.min.js"></script>
+<script>
+var app = angular.module('app', []);
+
+//自定义指令repeatFinish，监控遍历元素
+app.directive('repeatFinish', ['$timeout', function($timeout) {
+    return {
+        link: function(scope, element, attr) {
+
+            if (scope.$last === true) {
+                //车型选择获取遍历列表渲染完成
+                (function() {
+                    if (element[0].innerHTML === '') {
+                        $timeout(arguments.callee, 100);
+                        return;
+                    } else {
+                        //向父控制器传递事件
+                        scope.$emit('to-parent', element);
+                        //向子控制器传递事件
+                        // scope.$broadcast('to-child');
+                    }
+                })();
+            }
+        }
+    };
+}]);
+
+//controller
+app.controller('testCtrl', ['$scope', function ($scope) {
+        $scope.persons = [{
+          id: "161112001",
+          sort: 0,
+          name: "赵子龙",
+          gender: "男",
+          age: 18
+        }, {
+          id: "161112002",
+          sort: 2,
+          name: "吕布",
+          gender: "男",
+          age: 18
+        }, {
+          id: "161112003",
+          sort: 1,
+          name: "貂蝉",
+          gender: "女",
+          age: 18
+        }, {
+          id: "161112004",
+          sort: 3,
+          name: "孙尚香",
+          gender: "女",
+          age: 18
+        }];
+
+    $scope.$on('to-parent',function(scope, ele){
+        console.log(arguments);
+        console.log(ele);
+    });
+}]);
+</script>
+<div ng-controller="testCtrl">
+      <table>
+        <thead>
+          <tr>
+            <th>索引</th>
+            <th>学号</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+          </tr>
+        </thead>
+        <tbody repeat-id="r0">
+          <tr ng-repeat="si in persons track by $index" repeat-finish>
+            <td ng-bind="$index"></td>
+            <td ng-bind="si.id"></td>
+            <td ng-bind="si.name"></td>
+            <td ng-bind="si.gender"></td>
+            <td ng-bind="si.age"></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="6">总数量: <span ng-bind="persons.length"></span></td>
+          </tr>
+        </tfoot>
+      </table>
+</div>
+</body>
+
+</html>

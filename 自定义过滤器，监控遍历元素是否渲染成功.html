@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <style>
+      .container { width: 600px; margin: auto; }
+      .container > div { padding: 15px; background-color: #6D6D6D; color: #ffffff; }
+      table { width: 100%; border: none; border-padding: 0; border-spacing: 0; }
+      table td { text-align: center; }
+      table td .button { cursor: pointer; color: #571d00; font-weight: bold; }
+      table tr { height: 2.5em; vertical-align: middle; }
+      table tbody tr:nth-child(2n+1) { background-color: #f0f0f0; }
+      table tbody tr:nth-child(2n) { background-color: #f0e0ff; }
+      table tfoot { background-color: #ffd9c2; }
+    </style>
+    <title></title>
+    <script src="http://192.168.1.118/git/h5_v3.0/common/AngularJS/angular.min.js"></script>
+  </head>
+  <body ng-app="myApp" ng-controller="userCtrl">
+    <div class="container">
+      <table>
+        <thead>
+          <tr>
+            <th>索引</th>
+            <th>学号</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody repeat-id="r0">
+          <tr ng-repeat="(si,stu) in students=(persons|orderBy:'sort') | ngRepeatFinishEveryTime:'studentsRepeatFinish':this track by $index">
+            <td ng-bind="si+1"></td>
+            <td ng-bind="stu.id"></td>
+            <td ng-bind="stu.name"></td>
+            <td ng-bind="stu.gender"></td>
+            <td ng-bind="stu.age"></td>
+            <td>
+              <span class="button" ng-click="changeSort(students, si, -1, 'sort')" ng-if="!$first">上移</span>
+              <span class="split" ng-if="!$first&&!$last"></span>
+              <span class="button" ng-click="changeSort(students, si, 1, 'sort')" ng-if="!$last">下移</span>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="6">总数量: <span ng-bind="persons.length"></span></td>
+          </tr>
+        </tfoot>
+      </table>
+      <div>
+        <p>
+          <lable>姓名: <input ng-model="newStu.name" type="text"/></lable>
+        </p>
+        <p>
+          <lable>性别: <input ng-model="newStu.gender" type="radio" name="gender" value="男"/>男&nbsp;&nbsp;&nbsp;<input
+              ng-model="newStu.gender" type="radio" name="gender" value="女"/>女
+          </lable>
+        </p>
+        <p>
+          <lable>年龄: <input ng-model="newStu.age" type="number"/></lable>
+        </p>
+        <button ng-click="add(newStu)">添加</button>
+      </div>
+    </div>
+    <script>
+      var myApp = angular.module('myApp', []);
+      myApp.filter('ngRepeatFinishEveryTime', function ($timeout) {
+        console.log(arguments)
+        return function (data, eventName, scope) {
+          
+          var me = scope;
+          var flagProperty = '__finishedRendering__';
+          if (!data) data = {};
+          if (!data[flagProperty]) {
+            Object.defineProperty(data, flagProperty, {
+              enumerable: false,
+              configurable: true,
+              writable: false,
+              value: {}
+            });
+            $timeout(function () {
+              delete data[flagProperty];
+              me.$emit(eventName ? eventName : "ngRepeatFinishEveryTime");
+            }, 0, false);
+          }
+          return data;
+        };
+      });
+      myApp.controller('userCtrl', function ($scope) {
+        $scope.newStu = {
+          name: "jicemoon",
+          gender: "男",
+          age: 19
+        }
+        $scope.persons = [{
+          id: "161112001",
+          sort: 0,
+          name: "赵子龙",
+          gender: "男",
+          age: 18
+        }, {
+          id: "161112002",
+          sort: 2,
+          name: "吕布",
+          gender: "男",
+          age: 18
+        }, {
+          id: "161112003",
+          sort: 1,
+          name: "貂蝉",
+          gender: "女",
+          age: 18
+        }, {
+          id: "161112004",
+          sort: 3,
+          name: "孙尚香",
+          gender: "女",
+          age: 18
+        }];
+        $scope.add = function (obj) {
+          obj = JSON.parse(JSON.stringify(obj));
+          var lens = $scope.persons.length + 1;
+          obj.id = "161112" + ("000" + lens).substring(('' + lens).length);
+          obj.sort = lens - 1;
+          $scope.persons.push(obj);
+        }
+        $scope.changeSort = function (arr, index, up, attr) {
+          var temp;
+          temp = arr[index].sort;
+          arr[index][attr] = arr[index + up][attr];
+          arr[index + up][attr] = temp;
+          return false;
+        };
+        $scope.$on("studentsRepeatFinish", function (repeatFinishedEvent) {
+          console.log("data update & repeat render complete");
+        })
+      })
+    </script>
+  </body>
+</html>
