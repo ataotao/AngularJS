@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+    <div ng-app="MyApp">
+        <div ng-controller="MyController">
+            <label for="flag">成功
+                <input id="flag" type="checkbox" ng-model="flag" />
+                <br/>
+            </label>
+            <hr/>
+            <button ng-click="handle()">点击我</button>
+        </div>
+    </div>
+    <script src="angular.min.js"></script>
+    <script>
+    angular.module("MyApp", [])
+        .controller("MyController", ["$scope", "$q", function($scope, $q) {
+            //同步方式
+            $scope.flag = true;
+            /**
+             * resolve(value)：用来执行deferred promise，value可以为字符串，对象等。
+             * reject(value)：用来拒绝deferred promise，value可以为字符串，对象等。
+             * notify(value)：获取deferred promise的执行状态，然后使用这个函数来传递它。
+             * then(successFunc, errorFunc, notifyFunc)：无论promise是成功了还是失败了，当结果可用之后，then都会立刻异步调用successFunc，或者'errorFunc'，在promise被执行或者拒绝之前，notifyFunc可能会被调用0到多次，以提供过程状态的提示。
+             * catch(errorFunc)
+             * finally(callback)
+             */
+            $scope.handle = function() {
+                var deferred = $q.defer();
+                var promise = deferred.promise;
+
+                promise.then(function(result) {
+                    console.log("Success: " + result);
+                }, function(error) {
+                    console.log("Fail: " + error);
+                });
+
+                if ($scope.flag) {
+                    deferred.resolve("you are lucky!");
+                } else {
+                    deferred.reject("sorry, it lost!");
+                }
+            };
+        }]);
+    </script>
+</body>
+
+</html>

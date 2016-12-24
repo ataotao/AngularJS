@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+    <div ng-app="MyApp">
+        <div ng-controller="MyController">
+            <label for="flag">成功
+                <input id="flag" type="checkbox" ng-model="flag" />
+                <br/>
+            </label>
+            <div ng-cloak>
+                {{status}}
+            </div>
+            <hr/>
+            <button ng-click="handle()">点击我</button>
+        </div>
+    </div>
+    <script src="angular.min.js"></script>
+    <script>
+    angular.module("MyApp", [])
+        .controller("MyController", ["$scope", "$q", function($scope, $q) {
+            $scope.flag = true;
+            $scope.handle = function() {
+                var deferred = $q.defer();
+                var promise = deferred.promise;
+                //需要注意的一点是，在第一个then()方法中，我们在第一个successFunc函数中将result的值进行了改变，在第二个errorFunc函数中对error的值也进行了改变。
+                //因为这个promise对象是贯穿整个执行链条的，所以在第一个then()方法中对其值进行改变必然会反映到后面的then()方法中
+                promise.then(function(result) {
+                    result = result + "you have passed the first then()";
+                    $scope.status = result;
+                    return result;
+                }, function(error) {
+                    error = error + "failed but you have passed the first then()";
+                    $scope.status = error;
+                    return error;
+                }).then(function(result) {
+                    console.log("Success: " + result);
+                }, function(error) {
+                    console.log("Fail: " + error);
+                });
+
+                if ($scope.flag) {
+                    deferred.resolve("you are lucky!");
+                } else {
+                    deferred.reject("sorry, it lost!");
+                }
+            };
+        }]);
+    </script>
+</body>
+
+</html>

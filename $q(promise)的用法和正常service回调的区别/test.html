@@ -44,9 +44,7 @@
             $scope.user3 = {
                 error: '用户不存在！'
             };
-        });
-
-        promise.then(function(data) { // 调用承诺API获取数据 .resolve
+        }).then(function(data) { // 调用承诺API获取数据 .resolve
             $scope.user4 = 'promise 2';
             console.log('promise 2');
         }, function(data) { // 处理错误 .reject
@@ -54,6 +52,8 @@
                 error: '用户不存在！'
             };
         });
+
+
 
     }]);
 

@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+    <div ng-app="app">
+        <div ng-controller="AppCtrl">
+        </div>
+    </div>
+    <script src="angular.min.js"></script>
+    <script>
+    var app = angular.module("app", []);
+    app.controller("AppCtrl", function($q, $timeout) {
+        var one = $q.defer();
+        var two = $q.defer();
+        var three = $q.defer();
+        $timeout(function() {
+            one.resolve("one done");
+        }, Math.random() * 1000);
+
+        $timeout(function() {
+            two.resolve("two done");
+        }, Math.random() * 1000);
+
+        $timeout(function() {
+            three.resolve("three done");
+        }, Math.random() * 1000);
+
+        function success(data) {
+            console.log(data);
+            // document.write('<p>' + data + '</p>');
+        }
+
+        // one.promise.then(success);
+        // two.promise.then(success);
+        // three.promise.then(success);
+
+        var all = $q.all([one.promise, two.promise, three.promise]);
+        all.then(success);
+
+    });
+    </script>
+</body>
+
+</html>

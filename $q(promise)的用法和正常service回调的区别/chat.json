@@ -1,0 +1,101 @@
+[
+    {
+        "id": "1",
+        "name": "车后邦测试1",
+        "head": "resource/img/test/head1.png",
+        "isfav": 1,
+        "notice": 10,
+        "buyersChat": [
+            {
+                "fromTo": 2,
+                "txtMsgType": 1,
+                "time": "2016-03-09T03:09:02.000Z",
+                "msgBody": "测试一 您好，很高兴为您服务；有什么可以帮到您吗？"
+            },
+            {
+                "fromTo": 1,
+                "txtMsgType": 1,
+                "time": "2016-03-09T03:09:02.000Z",
+                "msgBody": "您好! 您报价是多少？"
+            },
+            {
+                "fromTo": 1,
+                "txtMsgType": 2,
+                "time": "2016-03-09T03:09:02.000Z",
+                "msgBody": "resource/img/test/testP3.jpg"
+            },
+            {
+                "fromTo": 1,
+                "txtMsgType": 2,
+                "time": "2016-03-09T03:09:02.000Z",
+                "msgBody": "resource/img/test/testP4.jpg"
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "name": "车后邦测试2",
+        "head": "resource/img/test/head2.png",
+        "isfav": 1,
+        "notice": 2,
+        "buyersChat": [
+            {
+                "fromTo": 2,
+                "txtMsgType": 1,
+                "time": "2016-03-09T03:09:02.000Z",
+                "msgBody": "测试二 您好，很高兴为您服务；有什么可以帮到您吗？"
+            },
+            {
+                "fromTo": 1,
+                "txtMsgType": 1,
+                "time": "2016-03-09T03:09:02.000Z",
+                "msgBody": "您好! 您报价是多少？"
+            },
+            {
+                "fromTo": 1,
+                "txtMsgType": 2,
+                "time": "2016-03-09T03:09:02.000Z",
+                "msgBody": "resource/img/test/testP3.jpg"
+            },
+            {
+                "fromTo": 1,
+                "txtMsgType": 2,
+                "time": "2016-03-09T03:09:02.000Z",
+                "msgBody": "resource/img/test/testP4.jpg"
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "name": "车后邦测试3",
+        "head": "resource/img/test/head3.png",
+        "isfav": 0,
+        "notice": "",
+        "buyersChat": [
+            {
+                "fromTo": 2,
+                "txtMsgType": 1,
+                "time": "2016-03-09T03:09:02.000Z",
+                "msgBody": "测试三 您好，很高兴为您服务；有什么可以帮到您吗？"
+            },
+            {
+                "fromTo": 1,
+                "txtMsgType": 1,
+                "time": "2016-03-09T03:09:02.000Z",
+                "msgBody": "您好! 您报价是多少？"
+            },
+            {
+                "fromTo": 1,
+                "txtMsgType": 2,
+                "time": "2016-03-09T03:09:02.000Z",
+                "msgBody": "resource/img/test/testP3.jpg"
+            },
+            {
+                "fromTo": 1,
+                "txtMsgType": 2,
+                "time": "2016-03-09T03:09:02.000Z",
+                "msgBody": "resource/img/test/testP4.jpg"
+            }
+        ]
+    }
+]
