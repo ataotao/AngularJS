@@ -1,5 +1,5 @@
 angular.module("MyController", [])
-    .controller("IndexController", ["$scope", "githubService", "$timeout", function($scope, githubService, $timeout) {
+    .controller("IndexController", ["$rootScope", "$scope", "githubService", "$timeout", function($rootScope, $scope, githubService, $timeout) {
         $scope.name = "dreamapple";
         $scope.show = true;
         githubService.getPullRequests()
@@ -8,7 +8,10 @@ angular.module("MyController", [])
             }, function(error) {
                 $scope.data = "error!";
             }, function(progress) {
-                $scope.progress = progress;
+                // $timeout(function(){
+                    $rootScope.progress1 = progress;
+                    console.log(progress);
+                // })
                 $scope.show = false;
             });
 
