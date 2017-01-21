@@ -24,7 +24,9 @@ module.exports = function () {
       filename: isBuild ? '[name].[hash:8].js' : '[name].bundle.js',
       chunkFilename: isBuild ? '[name].[hash:8].js' : '[name].bundle.js'
     },
-
+    externals: {
+        jquery: 'window.$'
+    },
     module: {
       preLoaders: [{
           test: /\.js$/,
@@ -77,7 +79,8 @@ module.exports = function () {
         name: 'commons.chunk',
         chunks: ['app']
       }),
-      new webpack.optimize.CommonsChunkPlugin('vendor', isBuild ? 'vendor.[hash:8].js' : 'vendor.bundle.js'),
+      // new webpack.optimize.CommonsChunkPlugin('vendor', isBuild ? 'vendor.[hash:8].js' : 'vendor.bundle.js'),
+      new webpack.optimize.CommonsChunkPlugin('vendor', isBuild ? 'vendor.js' : 'vendor.bundle.js'),
       new HtmlWebpackPlugin({
         template: helpers.root('./src/index.html'),
         //inject        : 'body',
@@ -86,7 +89,6 @@ module.exports = function () {
       }),
       new ExtractTextPlugin(isBuild ? '[name].[hash:8].css' : '[name].css')
     ],
-
     postcss: [
       autoprefixer({
         browsers: ['last 2 version']
@@ -94,7 +96,7 @@ module.exports = function () {
     ],
 
     devServer: {
-      // contentBase: 'src',
+      contentBase: 'src',
       // 尽量减少输出
       //stats      : 'minimal',
       port: 3000

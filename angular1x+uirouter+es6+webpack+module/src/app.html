@@ -1,12 +1,18 @@
 <header>
   <nav>
-    <a href="javascript:;" ui-sref="/">Home</a>
+    <a href="javascript:;" ui-sref="home">Home</a>
     <a href="javascript:;" ui-sref="about">About</a>
+        <!--<a href="/">Home</a>
+        <a href="/about">About</a>-->
+    <span class="input-group-btn">
+      <button type="button" class="btn btn-default">Go!</button>
+    </span>
+    
   </nav>
 </header>
 <main>
   <img src="./images/angular.png">
-  <img src="./images/download.jpg">111
+  <img src="./images/download.jpg" width="50">111
   
   <div ui-view></div>
 </main>

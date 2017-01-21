@@ -2,13 +2,15 @@ routing.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider', '$lo
 export default function routing($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, $compileProvider) {
 
     // $locationProvider.html5Mode(true);
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('home');
 
     $stateProvider
-        .state('/', {
+        .state('home', {
+            url: '/home',
             template: '<home></home>'
         })
         .state('about', {
+            url: '/about',
             template: '<about></about>'
         });
 
