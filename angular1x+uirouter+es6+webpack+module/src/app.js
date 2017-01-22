@@ -3,6 +3,7 @@ import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import components from './components/components';
 import appRouter from './app.router';
+import commonService from './components/commonService/commonService';
 import json from './json/test.json';
 
 import './css/main.scss';
@@ -25,4 +26,5 @@ let appComponent = {
 export default angular.module('sopeiApp', [uiRouter, components])
     .config(appRouter)
     .component('app', appComponent)
+    .service('commonService', commonService)
     .name;
