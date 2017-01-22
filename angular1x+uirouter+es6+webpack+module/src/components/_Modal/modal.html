@@ -1,0 +1,26 @@
+<!--<div ng-show="modal.isShow">-->
+    <div class="modal fade" ng-class="{true: 'in', false: ''}[modal.isShow]" ng-style="modal.block">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click='modal.close()'><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" ng-bind-html="modal.config.title | toHtml"></h4>
+                    <div ng-bind-html="modal.config.subTitle | toHtml"></div>
+                </div>
+                <div class="modal-body">
+                    <p ng-bind-html="modal.config.template | toHtml"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-class="modal.config.buttons[0].type" ng-bind-html="modal.config.buttons[0].text | toHtml"
+                        ng-click="modal.close()"></button>
+                        <button type="button" class="btn btn-primary" ng-class="modal.config.buttons[1].type" ng-bind-html="modal.config.buttons[1].text | toHtml"
+                            ng-click="modal.config.buttons[1].onTap(modal);modal.close()"></button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <div class="modal-backdrop fade" ng-class="{true: 'in', false: ''}[modal.isShow]" ng-style="modal.block" ng-show="modal.isShow"></div>
+<!--</div>-->

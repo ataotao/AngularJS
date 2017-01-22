@@ -1,9 +1,13 @@
 <h1 class="{{home.style.title}}">This from<span style="color:{{ home.color }}">{{ home.name }}</span> Component</h1>
-
+{{home.data}}
 <span class="input-group-btn">
   <button type="button" class="btn btn-default" ng-click="home.handledClick()">点击!</button>
   <button type="button" class="btn btn-default" ng-click="home.handledClick1()">点击1!</button>
+  <button type="button" class="btn btn-default" ng-click="home.modalClick()">模态框调用</button>
 </span>
+
 
 <h1 ng-show="home.isShow">加载中... <span ng-bind="home.notify"></span></h1>
 <p ng-repeat="person in home.data">{{person.id}}</p>
+
+
