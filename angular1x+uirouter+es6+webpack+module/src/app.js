@@ -15,10 +15,8 @@ let appComponent = {
     template: require('./app.html'),
     controller: function () {
         this.style = style;
-
         // 获取json
         console.log(json);
-
 
     },
     controllerAs: 'app'
@@ -26,7 +24,8 @@ let appComponent = {
 
 function appRun($rootScope, PubSub) {
     $rootScope.$on('$stateChangeStart', function () {
-        // PubSub.publish('modalRouter', {});
+        //路由页面发送模态框初始状态
+        PubSub.publish('modalRouter');
     });
 }
 
