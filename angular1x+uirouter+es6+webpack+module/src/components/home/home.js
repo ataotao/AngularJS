@@ -5,14 +5,17 @@ import actionModal from './actionModal.html';
 import style from './home.scss';
 
 class HomeController {
-    constructor(ENV, $http, $timeout, commonService, homeService, ModalService) {
+    constructor(ENV, $http, $timeout, commonService, homeService, Modal, Tips) {
         console.log(ENV.api);
+        console.log(Tips);
         //公用服务
         this.commonService = commonService;
         //模块服务
         this.homeService = homeService;
         //模态框服务
-        this.ModalService = ModalService;
+        this.Modal = Modal;
+        //Tips服务
+        this.Tips = Tips;
 
         //初始化值
         this.url = './json/test.json';
@@ -25,7 +28,21 @@ class HomeController {
         //$onInit() 方法会在组件及其所有 binding 初始化之后被 compiler 调用，从而我们就有了一个清晰的地方统一存放数据初始化的逻辑。
         this.$onInit = function () {
             // console.log('加载后后执行', home);
+
+
         };
+
+        /**
+         * Tips调用
+         * @param ---字符串类型---
+         * @param content 提示信息 (必填)
+         */
+        // Tips.show('提示信息');
+        // $timeout(() => {
+        //     Tips.hide();
+        // }, 1000);
+        Tips.showHide('提示信息');
+
     }
     //模态框事件
     modalClick() {
@@ -42,7 +59,7 @@ class HomeController {
          * @param noCancel 是否包含取消按钮
          * @param buttons [text:取消,{text:确定(默认danger), type:样式(默认default)}] 
          */
-        this.ModalService.show(
+        this.Modal.show(
             {
                 scope: this,
                 title: 'template主标题template',
@@ -96,7 +113,7 @@ class HomeController {
 export default angular.module('app.home', [])
     .component('home', {
         template: template,
-        controller: ['ENV', '$http', '$timeout', 'commonService', 'homeService', 'ModalService', HomeController],
+        controller: ['ENV', '$http', '$timeout', 'commonService', 'homeService', 'Modal', 'Tips', HomeController],
         controllerAs: 'home'
     })
     .component('actionModal', {
@@ -117,9 +134,9 @@ export default angular.module('app.home', [])
             color: '<',
             handledClick: '&'
         },
-        controller: function() {
+        controller: function () {
             console.log(this);
-            this.$onInit = function() {
+            this.$onInit = function () {
                 console.log(this);
                 // console.log(this.handledClick());
             };

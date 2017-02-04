@@ -4,10 +4,13 @@ import uiRouter from 'angular-ui-router';
 import components from './components/components';
 import appRouter from './app.router';
 import PubSub from './plugin/angular-pubsub';
-import _Modal from './components/_Modal/modal';
 import commonService from './components/commonService/commonService';
 import json from './json/test.json';
 import ENV from './app.env';
+
+// 全局组件
+import _Modal from './components/_Modal/modal';
+import _Tips from './components/_Tips/tips';
 
 import './css/main.scss';
 import style from './app.scss';
@@ -33,7 +36,7 @@ function appRun($rootScope, PubSub) {
 appRun.$inject = ['$rootScope', 'PubSub'];
 
 
-export default angular.module('sopeiApp', [uiRouter, components, PubSub, _Modal])
+export default angular.module('sopeiApp', [uiRouter, components, PubSub, _Modal, _Tips])
     .config(appRouter)
     .run(appRun)
     .component('app', appComponent)

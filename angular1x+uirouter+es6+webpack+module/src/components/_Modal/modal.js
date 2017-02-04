@@ -3,7 +3,7 @@ import template from './modal.html';
 import './modal.scss';
 
 class ModalController {
-    constructor($timeout, ModalService, PubSub) {
+    constructor($timeout, Modal, PubSub) {
         //模态框服务
         this.$timeout = $timeout;
         this.PubSub = PubSub;
@@ -61,8 +61,8 @@ class ModalController {
 
 }
 
-//ModalService
-class ModalService {
+//Modal
+class Modal {
     constructor(PubSub) {
         this.PubSub = PubSub;
     }
@@ -72,14 +72,14 @@ class ModalService {
     }
 }
 
-ModalService.$inject = ['PubSub'];
+Modal.$inject = ['PubSub'];
 
 //导出模块
 export default angular.module('app.modal', [])
     .component('modal', {
         template: template,
-        controller: ['$timeout', 'ModalService', 'PubSub', ModalController],
+        controller: ['$timeout', 'Modal', 'PubSub', ModalController],
         controllerAs: 'modal'
     })
-    .service('ModalService', ModalService)
+    .service('Modal', Modal)
     .name;
