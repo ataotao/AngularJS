@@ -4,7 +4,7 @@
   "description": "ES6 + Webpack +  Angular",
   "main": "src/app.js",
   "scripts": {
-    "start": "webpack-dev-server --history-api-fallback --inline --progress --colors",
+    "start": "webpack-dev-server --host 192.168.0.118 --history-api-fallback --inline --progress --colors",
     "build": "rimraf www && webpack -p --bail --progress --profile --colors",
     "build-dev": "rimraf www && webpack --bail --progress --profile --colors",
     "test": "echo \"Error: no test specified\" && exit 1"

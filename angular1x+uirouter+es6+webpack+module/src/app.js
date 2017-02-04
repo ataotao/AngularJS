@@ -7,6 +7,7 @@ import PubSub from './plugin/angular-pubsub';
 import _Modal from './components/_Modal/modal';
 import commonService from './components/commonService/commonService';
 import json from './json/test.json';
+import ENV from './app.env';
 
 import './css/main.scss';
 import style from './app.scss';
@@ -43,6 +44,7 @@ export default angular.module('sopeiApp', [uiRouter, components, PubSub, _Modal]
             return $sce.trustAsHtml(text);
         };
     }])
+    .constant('ENV', ENV)
     .name;
 
 

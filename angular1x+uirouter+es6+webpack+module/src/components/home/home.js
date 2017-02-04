@@ -5,7 +5,8 @@ import actionModal from './actionModal.html';
 import style from './home.scss';
 
 class HomeController {
-    constructor($http, $timeout, commonService, homeService, ModalService) {
+    constructor(ENV, $http, $timeout, commonService, homeService, ModalService) {
+        console.log(ENV.api);
         //公用服务
         this.commonService = commonService;
         //模块服务
@@ -95,7 +96,7 @@ class HomeController {
 export default angular.module('app.home', [])
     .component('home', {
         template: template,
-        controller: ['$http', '$timeout', 'commonService', 'homeService', 'ModalService', HomeController],
+        controller: ['ENV', '$http', '$timeout', 'commonService', 'homeService', 'ModalService', HomeController],
         controllerAs: 'home'
     })
     .component('actionModal', {

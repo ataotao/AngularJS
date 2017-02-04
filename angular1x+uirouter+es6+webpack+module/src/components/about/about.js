@@ -2,9 +2,9 @@ import angular from 'angular';
 import template from './about.html';
 import style from './about.scss';
 
-
 class AboutController {
-    constructor($http, $timeout) {
+    constructor(ENV, $http, $timeout) {
+        console.log(ENV);
         this.$http = $http;
         this.$timeout = $timeout;
         this.handledClick.bind(this);
@@ -23,7 +23,7 @@ class AboutController {
 export default angular.module('app.about', [])
     .component('about', {
         template: template,
-        controller: ['$http', '$timeout', AboutController],
+        controller: ['ENV', '$http', '$timeout', AboutController],
         controllerAs: 'about'
     })
     .name;
