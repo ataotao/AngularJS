@@ -1,0 +1,14 @@
+<nav class="text-center">
+    <ul class="pagination">
+        <li class="prevPage" ng-class="{'disabled': pagination.initPage === 1}" ng-click="pagination.prevPage()">
+            <span>«</span>
+        </li>
+        <li ng-repeat="item in pagination.pageArr" ng-class="{'active': pagination.initPage === item}">
+            <span ng-bind="item" ng-if="pagination.initPage === item"></span>
+            <span ng-bind="item" ng-click="pagination.changeClick(item)" ng-if="pagination.initPage !== item"></span>
+        </li>
+        <li class="nextPage" ng-class="{'disabled': pagination.initPage === pagination.pageArr.length}" ng-click="pagination.nextPage()">
+            <span>»</span>
+        <li>
+    </ul>
+</nav>

@@ -1,0 +1,21 @@
+<ul class="nav" ng-style="pageLeft.menuHeight">
+    <li class="nav-row" ng-repeat="items in pageLeft.config track by $index" ng-class="{'active': items.active}">
+        <a href="javascript:;" ng-click="pageLeft.navIn(items)" ng-if="!items.url">
+            <div>
+                <i class="glyphicon {{items.icon}}"></i><span ng-bind="items.title"></span>
+                <span class="glyphicon glyphicon-menu-down" ng-class="{'glyphicon-menu-up': items.active}"></span>
+            </div>
+        </a>
+        <a href="javascript:;" ng-if="items.url">
+            <div ui-sref="{{items.url}}">
+                <i class="glyphicon {{items.icon}}"></i><span ng-bind="items.title"></span>
+                <span class="glyphicon glyphicon-menu-down" ng-class="{'glyphicon-menu-up': items.active}"></span>
+            </div>
+        </a>
+        <ul class="nav nav-second-level collapse collapsing in" ng-style="items.subMenuHeight" ng-if="items.sub">
+            <li ng-repeat="item in items.sub track by $index" ng-class="{'active': item.active}">
+                <a href="javascript:;" ng-bind="item.title" ng-click="pageLeft.navSubIn(item)" ui-sref="{{item.url}}"></a>
+            </li>
+        </ul>
+    </li>
+</ul>

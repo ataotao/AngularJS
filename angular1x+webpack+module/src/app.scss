@@ -1,0 +1,66 @@
+@import "./css/config.scss";
+body {
+  font-family: "Microsoft YaHei";
+}
+
+
+/* page-header */
+
+.page-header {
+  margin: 0;
+  background-color: $color-F8;
+  h1 {
+    font-size: $s20;
+    small {
+      font-size: $s20;
+    }
+  }
+}
+
+
+/* page-main-left */
+
+.page-main-left {
+  background-color: $color-F8;
+  width: 200px;
+  i.glyphicon {
+    margin-right: 10px;
+  }
+  .glyphicon-menu-down {
+    position: absolute;
+    right: 10px;
+    top: 13px;
+    font-size: $s12;
+  }
+  .nav-row {
+    border-bottom: solid 1px $color-E;
+    a {
+      z-index: 1;
+      position: relative;
+    }
+  }
+  .nav-second-level {
+    height: 0;
+    li {
+      a {
+        padding-left: 38px;
+        background-color: $color-F8;
+      }
+      &.active a {
+        background-color: $color-F1;
+      }
+    }
+  }
+  .active a {
+    background-color: $color-E;
+  }
+}
+
+
+/* page-main-right */
+
+.page-main-right {
+  margin-left: 200px;
+  padding-left: 15px;
+  padding-right: 15px;
+}

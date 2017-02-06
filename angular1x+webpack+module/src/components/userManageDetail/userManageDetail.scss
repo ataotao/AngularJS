@@ -1,0 +1,10 @@
+@import "../../css/config.scss";
+.userManageDetail-pic {
+    img {
+        max-height: 70px;
+        width: 135px;
+    }
+    a:hover {
+        text-decoration: none;
+    }
+}

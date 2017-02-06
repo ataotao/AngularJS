@@ -1,0 +1,116 @@
+<div class="container-fluid">
+    <h1 class="main-title">用户审核 - 卖家审核详情 - 车后邦</h1>
+    <div class="row">
+        <form name="sopeiReviewDetailForm" class="form-horizontal m-t-20 col-xs-12">
+            <!-- left -->
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label class="col-xs-3 control-label">公司名称</label>
+                    <div class="col-xs-9">
+                        <span class="form-control" ng-bind="userManageDetail.info.org_name"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 control-label">联系人</label>
+                    <div class="col-xs-9">
+                        <span class="form-control" ng-bind="userManageDetail.info.org_contact"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-3 control-label">手机号码</label>
+                    <div class="col-xs-9">
+                        <span class="form-control" ng-bind="userManageDetail.info.org_admin_phone"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- left end -->
+            <!-- right -->
+            <div class="col-xs-6">
+                <div class="form-group userManageDetail-pic">
+                    <label class="col-xs-4 control-label">营业执照照片</label>
+                    <div class="col-xs-7">
+                        <label>
+                            <div ng-if="!userManageDetail.info.org_license_photo" class="m-t-5">
+                                <span class="label label-danger cur">没有上传图片，请上传</span>
+                            </div>
+                            <span ng-if="userManageDetail.info.org_license_photo">
+                                <!--<a class="fancybox-thumbs" data-fancybox-group="thumb" ng-href="{{'../' + userManageDetail.info.org_license_photo}}" target="_blank"><img ng-src="{{'../' + userManageDetail.info.org_license_photo}}" />
+                                </a>-->
+                                <a class="fancybox-thumbs" data-fancybox-group="thumb" ng-href="{{userManageDetail.info.org_license_photo}}" target="_blank"><img ng-src="{{userManageDetail.info.org_license_photo}}" />
+                                </a>
+                            </span>
+                            <span class="label label-primary cur" ng-if="userManageDetail.info.org_license_photo">更换</span>
+                            <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png" upload-file picurl="userManageDetail.info.org_license_photo" param="userManageDetail.param" filename="org_license_photo" class="hidden" />
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group m-t-20 userManageDetail-pic">
+                    <label class="col-xs-4 control-label">实体门店照片</label>
+                    <div class="col-xs-7">
+                        <label>
+                            <div ng-if="!userManageDetail.info.org_main_photo" class="m-t-5">
+                                <span class="label label-danger cur">没有上传图片，请上传</span>
+                            </div>
+                            <span ng-if="userManageDetail.info.org_main_photo">
+                                <!--<a class="fancybox-thumbs" data-fancybox-group="thumb" ng-href="{{'../' + userManageDetail.info.org_main_photo}}" target="_blank"><img ng-src="{{'../' + userManageDetail.info.org_main_photo}}" />
+                                </a>-->
+                                <a class="fancybox-thumbs" data-fancybox-group="thumb" ng-href="{{userManageDetail.info.org_main_photo}}" target="_blank"><img ng-src="{{userManageDetail.info.org_main_photo}}" />
+                                </a>
+                            </span>
+                            <span class="label label-primary cur" ng-if="userManageDetail.info.org_main_photo">更换</span>
+                            <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png" upload-file="userManageDetail.info.org_main_photo" param="userManageDetail.param" filename="org_main_photo" class="hidden" />
+                        </label>
+                    </div>
+                </div>
+                <div ng-if="userManageDetail.info.sp_acc_role == 1">
+                    <div class="form-group m-t-20">
+                        <label class="col-xs-4 control-label">APP ID</label>
+                        <div class="col-xs-7">
+                            <input type="text" class="form-control" placeholder="请输入" ng-model="userManageDetail.info.sporg_appid" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">APP Secret</label>
+                        <div class="col-xs-7">
+                            <input type="text" class="form-control" placeholder="请输入" ng-model="userManageDetail.info.sporg_appsecret" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">URL</label>
+                        <div class="col-xs-7 row">
+                            <span class="col-xs-10"><input type="text" class="form-control" placeholder="请输入" ng-model="userManageDetail.info.factory_wechat_url" required></span>
+                            <span class="col-xs-2">
+                                <button type="button" class="btn btn-success" ng-click="userManageDetail.wechatinfo()">生成</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">搜配title录入</label>
+                        <div class="col-xs-7 row">
+                            <span class="col-xs-10"><input type="text" class="form-control" placeholder="请输入" ng-model="userManageDetail.info.title_name" required></span>
+                            <span class="col-xs-2">
+                                <button type="button" class="btn btn-success" ng-click="userManageDetail.setSoPeiTitle()">录入</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">备注</label>
+                        <div class="col-xs-7">
+                            <textarea class="form-control" rows="3" ng-model="userManageDetail.info.org_comment"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-7 col-xs-offset-4">
+                            <button type="button" class="btn btn-default" ng-click="userManageDetail.shenheBuTongguo()">不通过</button>
+                            <button type="button" class="btn btn-primary" ng-click="userManageDetail.shengetongguo()" ng-disabled="sopeiReviewDetailForm.$invalid">通过审核</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- right end -->
+        </form>
+        <div class="text-center">
+            <button type="button" class="btn btn-primary" onclick="history.go(-1)">返回上一页</button>
+        </div>
+    </div>
+</div>

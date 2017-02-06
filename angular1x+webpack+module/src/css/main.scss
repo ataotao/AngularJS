@@ -1,0 +1,78 @@
+@import "../app.scss";
+@import "./config.scss";
+
+/* 全局配置 */
+
+.cur {
+  cursor: pointer;
+}
+
+.m-t-5 {
+  margin-top: $s5;
+}
+
+.m-t-10 {
+  margin-top: $s10;
+}
+
+.m-t-15 {
+  margin-top: $s15;
+}
+
+.m-t-20 {
+  margin-top: $s20;
+}
+
+.m-r-5 {
+  margin-right: $s5;
+}
+
+
+/*
+* animated动画工具
+*/
+
+.animated {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes slideInDown {
+  from {
+    -webkit-transform: translate3d(0, -10%, 0);
+    transform: translate3d(0, -10%, 0);
+    visibility: visible;
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    -webkit-transform: translate3d(0, -10%, 0);
+    transform: translate3d(0, -10%, 0);
+    visibility: visible;
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.slideInDown {
+  -webkit-animation-name: slideInDown;
+  animation-name: slideInDown;
+}
+
+
+/* 页面设置 */
+
+.main-title {
+  border-bottom: solid 1px $color-E;
+  font-size: $s20;
+  line-height: 45px;
+}

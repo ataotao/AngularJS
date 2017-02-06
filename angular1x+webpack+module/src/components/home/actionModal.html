@@ -1,0 +1,13 @@
+<input type="text" ng-model="actionModal.ccc">
+<input type="text" ng-model="actionModal.name">
+<input type="text" ng-model="actionModal.color">
+
+
+<p ng-bind="'actionModal.ccc:(绑定方式单向绑定@)' + actionModal.ccc"></p>
+<p ng-bind="'actionModal.name:(绑定方式双向绑定=)' + actionModal.name"></p>
+<p ng-bind="'actionModal.color:(绑定方式单向绑定<)' + actionModal.color"></p>
+
+
+<button type="button" ng-click="actionModal.handledClick()">绑定事件</button>
+
+{{actionModal | json}}

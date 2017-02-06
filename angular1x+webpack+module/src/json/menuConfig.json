@@ -1,0 +1,17 @@
+[
+    {
+        "title": "用户管理",
+        "icon": "glyphicon-user",
+        "sub": [
+            {
+                "title": "用户审核",
+                "url": "userManage"
+            }
+        ]
+    },
+    {
+        "title": "退出登录",
+        "icon": "glyphicon glyphicon-log-in",
+        "url": "home"
+    }
+]
