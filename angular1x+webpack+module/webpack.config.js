@@ -25,7 +25,7 @@ module.exports = function () {
       chunkFilename: isBuild ? '[name].[hash:8].js' : '[name].bundle.js'
     },
     externals: {
-      jquery: 'window.$'
+      jQuery: 'window.$'
     },
     module: {
       preLoaders: [{
@@ -89,6 +89,10 @@ module.exports = function () {
         chunksSortMode: 'dependency'
       }),
       new ExtractTextPlugin(isBuild ? '[name].[hash:8].css' : '[name].css')
+      // new webpack.ProvidePlugin({
+      //     $: 'jquery',
+      //     'window.jQuery': 'jquery'
+      // })
     ],
     postcss: [
       autoprefixer({

@@ -1,4 +1,3 @@
-const $ = window.$;
 //日历控件调用
 let initDateInput = function (selector, format) {
     $(selector).datetimepicker({
