@@ -18,11 +18,29 @@ body {
 }
 
 
+/* page-main */
+
+.page-main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+/* page-content */
+
+.page-content {
+  display: flex;
+  flex: 1;
+}
+
+
 /* page-main-left */
 
 .page-main-left {
+  order: -1;
+  flex: 0 0 200px;
   background-color: $color-F8;
-  width: 200px;
   i.glyphicon {
     margin-right: 10px;
   }
@@ -60,7 +78,7 @@ body {
 /* page-main-right */
 
 .page-main-right {
-  margin-left: 200px;
   padding-left: 15px;
   padding-right: 15px;
+  flex: 1;
 }
