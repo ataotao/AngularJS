@@ -8,7 +8,7 @@ class commonService {
     get(url) {
         var deferred = this.$q.defer();
         this.$http.get(url).then(function (result) {
-            deferred.notify('start');
+            // deferred.notify('start');
             deferred.resolve(result.data);
         }, function (error) {
             deferred.reject(error);
@@ -20,7 +20,7 @@ class commonService {
     post(url, data, config) {
         var deferred = this.$q.defer();
         this.$http.post(url, data, config ? config : null).then(function (result) {
-            deferred.notify('start');
+            // deferred.notify('start');
             deferred.resolve(result.data);
         }, function (error) {
             deferred.reject(error);

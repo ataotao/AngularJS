@@ -17,14 +17,8 @@ class userManageController {
 
         //初始化
         vm.$onInit = () => {
-            // vm.changePage();
+            vm.changePage();
         };
-
-        //测试数据
-        let result = require('../../json/test.json');
-        vm.sellersList = result.result.sellers;
-        vm.sellersListTotal = result.result.total;
-        //测试数据
     }
 
     //拉取列表数据
@@ -51,7 +45,8 @@ class userManageController {
         //请求数据
         vm.CommonService.post(vm.ENV.adminApi + 'seller_review_list', tData).then((res) => {
             if (res.code === 0) {
-                vm.data = res;
+                vm.sellersList = res.result.sellers;
+                vm.sellersListTotal = res.result.total;
                 vm.Tips.hide();
             } else {
                 vm.Tips.showHide(res.message);
@@ -59,9 +54,6 @@ class userManageController {
         }, (error) => {
             console.log('Failed: ', error);
             vm.Tips.showHide('网络错误，请重试...');
-        }, (notify) => {
-            console.log('Got notification: ', notify);
-            vm.Tips.show('数据加载中...');
         });
     }
 
