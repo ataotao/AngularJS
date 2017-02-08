@@ -1,5 +1,5 @@
 <nav class="text-center">
-    <ul class="pagination">
+    <ul class="pagination" ng-if="pagination.pageCount > 1">
 
         <li class="prevPage" ng-class="{'disabled': pagination.current === 1}" ng-click="pagination.prevPage()">
             <span class="cur">«</span>
