@@ -34,13 +34,11 @@
                                 <span class="label label-danger cur">没有上传图片，请上传</span>
                             </div>
                             <span ng-if="userManageDetail.info.org_license_photo">
-                                <!--<a class="fancybox-thumbs" data-fancybox-group="thumb" ng-href="{{'../' + userManageDetail.info.org_license_photo}}" target="_blank"><img ng-src="{{'../' + userManageDetail.info.org_license_photo}}" />
-                                </a>-->
-                                <a class="fancybox-thumbs" data-fancybox-group="thumb" ng-href="{{userManageDetail.info.org_license_photo}}" target="_blank"><img ng-src="{{userManageDetail.info.org_license_photo}}" />
+                                <a class="fancybox-thumbs" data-fancybox-group="thumb" ng-href="{{'../' + userManageDetail.info.org_license_photo}}" target="_blank"><img ng-src="{{'../' + userManageDetail.info.org_license_photo}}" />
                                 </a>
                             </span>
                             <span class="label label-primary cur" ng-if="userManageDetail.info.org_license_photo">更换</span>
-                            <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png" upload-file picurl="userManageDetail.info.org_license_photo" param="userManageDetail.param" filename="org_license_photo" class="hidden" />
+                            <input class="hidden" type="file" accept="image/gif,image/jpeg,image/jpg,image/png" picurl="userManageDetail.info.org_license_photo" param="userManageDetail.param" filename="org_license_photo" upload-file />
                         </label>
                     </div>
                 </div>
@@ -52,13 +50,11 @@
                                 <span class="label label-danger cur">没有上传图片，请上传</span>
                             </div>
                             <span ng-if="userManageDetail.info.org_main_photo">
-                                <!--<a class="fancybox-thumbs" data-fancybox-group="thumb" ng-href="{{'../' + userManageDetail.info.org_main_photo}}" target="_blank"><img ng-src="{{'../' + userManageDetail.info.org_main_photo}}" />
-                                </a>-->
-                                <a class="fancybox-thumbs" data-fancybox-group="thumb" ng-href="{{userManageDetail.info.org_main_photo}}" target="_blank"><img ng-src="{{userManageDetail.info.org_main_photo}}" />
+                                <a class="fancybox-thumbs" data-fancybox-group="thumb" ng-href="{{'../' + userManageDetail.info.org_main_photo}}" target="_blank"><img ng-src="{{'../' + userManageDetail.info.org_main_photo}}" />
                                 </a>
                             </span>
                             <span class="label label-primary cur" ng-if="userManageDetail.info.org_main_photo">更换</span>
-                            <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png" upload-file="userManageDetail.info.org_main_photo" param="userManageDetail.param" filename="org_main_photo" class="hidden" />
+                            <input class="hidden" type="file" accept="image/gif,image/jpeg,image/jpg,image/png" picurl="userManageDetail.info.org_main_photo" param="userManageDetail.param" filename="org_main_photo" upload-file />
                         </label>
                     </div>
                 </div>

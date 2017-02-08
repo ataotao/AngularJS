@@ -20,7 +20,6 @@ class userManageDetailController {
         vm.$onInit = () => {
             //请求数据
             vm.CommonService.get(vm.ENV.adminApi + 'sopei/seller_organization_info/' + $stateParams.orgid).then((res) => {
-                console.log('Success: ', res);
                 vm.info = res.result.seller_org_info;
                 vm.autoCircle = res.result.autoCircle;
                 //设定上传图片参数
@@ -32,26 +31,10 @@ class userManageDetailController {
                 vm.factory_wechat_url();
                 //获取搜配title 初始化执行一次
                 vm.getSoPeiTitle();
-
-                vm.Tips.hide();
             }, (error) => {
                 console.log('Failed: ', error);
                 vm.Tips.showHide('网络错误，请重试...');
-            }, (notify) => {
-                console.log('Got notification: ', notify);
-                vm.Tips.show('数据加载中...');
             });
-
-            //模拟数据
-            let result = require('../../json/test1.json').result;
-            vm.info = result.seller_org_info;
-            vm.autoCircle = result.autoCircle;
-            //设定上传图片参数
-            vm.param = {
-                type: 'org_info',
-                org_id: vm.info.org_id
-            };
-            //模拟数据 end
         };
 
     }
@@ -80,9 +63,6 @@ class userManageDetailController {
             }, (error) => {
                 console.log('Failed: ', error);
                 vm.Tips.showHide(error.message);
-            }, (notify) => {
-                console.log('Got notification: ', notify);
-                vm.Tips.show('数据加载中...');
             });
         }
 
@@ -99,7 +79,6 @@ class userManageDetailController {
             };
             //请求数据
             vm.CommonService.post(vm.ENV.adminApi + 'sopei/shenheBuTongguo', tData).then((res) => {
-                vm.Tips.hide();
                 if (res.code === 0) {
                     vm.$state.go('userManage');
                 } else {
@@ -108,9 +87,6 @@ class userManageDetailController {
             }, (error) => {
                 console.log('Failed: ', error);
                 vm.Tips.showHide(error.message);
-            }, (notify) => {
-                console.log('Got notification: ', notify);
-                vm.Tips.show('数据加载中...');
             });
         }
     }
@@ -121,6 +97,7 @@ class userManageDetailController {
         //请求数据
         vm.CommonService.get(vm.ENV.adminApi + 'factory_wechat_url/' + vm.$stateParams.orgid).then((res) => {
             if (res.code === 0) {
+                console.log(res, 'factory_wechat_url');
                 vm.info.factory_wechat_url = res.result.factory_wechat_url;
                 vm.info.sporg_appid = res.result.sporg_appid;
                 vm.info.sporg_appsecret = res.result.sporg_appsecret;
@@ -131,9 +108,6 @@ class userManageDetailController {
         }, (error) => {
             console.log('Failed: ', error);
             vm.Tips.showHide('网络错误，请重试...');
-        }, (notify) => {
-            console.log('Got notification: ', notify);
-            vm.Tips.show('数据加载中...');
         });
     }
 
@@ -143,19 +117,16 @@ class userManageDetailController {
         //请求数据
         vm.CommonService.get(vm.ENV.adminApi + 'sopei/title/' + vm.$stateParams.orgid).then((res) => {
             if (res.code === 0) {
+                console.log(res, 'getSoPeiTitle');
                 if (res.result[0] && res.result[0].title_name) {
                     vm.info.title_name = res.result[0].title_name;
                 }
-                vm.Tips.hide();
             } else {
                 vm.Tips.showHide(res.message);
             }
         }, (error) => {
             console.log('Failed: ', error);
             vm.Tips.showHide('网络错误，请重试...');
-        }, (notify) => {
-            console.log('Got notification: ', notify);
-            vm.Tips.show('数据加载中...');
         });
 
     }
@@ -176,16 +147,12 @@ class userManageDetailController {
             if (res.code === 0) {
                 //成功后再获取一次微信菜单URL
                 vm.factory_wechat_url();
-                vm.Tips.hide();
             } else {
                 vm.Tips.showHide(res.message);
             }
         }, (error) => {
             console.log('Failed: ', error);
             vm.Tips.showHide('网络错误，请重试...');
-        }, (notify) => {
-            console.log('Got notification: ', notify);
-            vm.Tips.show('数据加载中...');
         });
     }
 
@@ -201,16 +168,12 @@ class userManageDetailController {
             if (res.code === 0) {
                 //成功后再获取一次title
                 vm.getSoPeiTitle();
-                vm.Tips.hide();
             } else {
                 vm.Tips.showHide(res.message);
             }
         }, (error) => {
             console.log('Failed: ', error);
             vm.Tips.showHide('网络错误，请重试...');
-        }, (notify) => {
-            console.log('Got notification: ', notify);
-            vm.Tips.show('数据加载中...');
         });
 
     }
