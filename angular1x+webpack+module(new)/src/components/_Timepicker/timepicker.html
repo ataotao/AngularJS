@@ -1,0 +1,5 @@
+<div class="dropdown form-group open">
+    <input class="form-control cur" placeholder="{{timepicker.placeholder}}" ng-click="timepicker.handleClick()" ng-model="timepicker.scopeData" />
+    <datetimepicker class="dropdown-menu" ng-if="timepicker.datepickerstate" ng-model="timepicker.scopeData" datetimepicker-config="{startView:'day', minView:'day'}" on-set-time="timepicker.onTimeSet(newDate, oldDate)"></datetimepicker>
+</div>
+<div style="position: fixed; width: 100%; height: 100%; top: 0; left: 0;" ng-click="timepicker.datepickerstate = false" ng-if="timepicker.datepickerstate"></div>

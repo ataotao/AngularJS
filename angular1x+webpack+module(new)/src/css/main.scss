@@ -1,0 +1,184 @@
+@import "./config.scss";
+
+/* 全局配置 */
+.control-label.text-left{text-align:left;}
+.cur {cursor: pointer;}
+.underline{text-decoration: underline;}
+.opacity{opacity: 1;}
+.max{max-width: 100%;}
+
+.vm{vertical-align: middle;}
+
+.db{display: block;}
+
+.pw100{width: 100%;}
+
+.ofy-s {overflow-y: scroll;}
+
+/*定位*/
+.rel{ position:relative;}
+.abs{ position:absolute;}
+.right{right: 0;}
+.right-10{right: -10px;}
+.right-15{right: -15px;}
+.top{right: 0;}
+.top-15{top: -15px;}
+
+/*width*/
+.pre-20{width: 20%;}
+.pre-50{width: 50%;}
+.w50{width: 50px;}
+
+/*height*/
+.h50{height: 50px;}
+
+/*background*/
+.bg-w{background-color: $color-F;}
+
+/*border*/
+.b1c{border:solid 1px $color-C;}
+.b2c{border:solid 2px $color-C;}
+
+.m-t-0 {margin-top: 0;}
+.m-t-5 {margin-top: 5px;}
+.m-t-10 {margin-top: 10px;}
+.m-t-15 {margin-top: 15px;}
+.m-t-20 {margin-top: 20px;}
+.m-t-25 {margin-top: 25px;}
+.m-t-35 {margin-top: 35px;}
+.m-l-0 {margin-left: 0;}
+.m-l-5 {margin-left: 5px;}
+.m-l-10 {margin-left: 10px;}
+.m-l-15 {margin-left: 15px;}
+.m-l-20 {margin-left: 20px;}
+.m-l-25 {margin-left: 25px;}
+.m-l-100{margin-left: 100px;}
+.m-r-0 {margin-right: 0;}
+.m-r-5 {margin-right: 5px;}
+.m-r-10 {margin-right: 10px;}
+.m-r-15 {margin-right: 15px;}
+.m-r-20 {margin-right: 20px;}
+.m-r-25 {margin-right: 25px;}
+.m-b-0 {margin-bottom: 0;}
+.m-b-5 {margin-bottom: 5px;}
+.m-b-10 {margin-bottom: 10px;}
+.m-b-15 {margin-bottom: 15px;}
+.m-b-20 {margin-bottom: 20px;}
+.m-b-25 {margin-bottom: 25px;}
+
+.p-10{padding: 10px;}
+.p-15{padding: 15px;}
+.p-l-0{padding-left: 0;}
+.p-l-5{padding-left: 5px;}
+.p-l-15{padding-left: 15px;}
+.p-t-0{padding-top: 0;}
+.p-t-10{padding-top: 10px;}
+.p-t-15{padding-top: 15px;}
+.p-t-20{padding-top: 20px;}
+.p-t-25{padding-top: 25px;}
+.p-t-35{padding-top: 35px;}
+.p-r-0{padding-right: 0;}
+.p-r-5{padding-right: 5px;}
+.p-r-15{padding-right: 15px;}
+.p-b-10{padding-bottom: 10px;}
+.p-b-35{padding-bottom: 35px;}
+
+
+/* 字体大小*/
+.f16{font-size: 16px;}
+.f18{font-size: 18px;}
+.f20{font-size: 20px;}
+.f22{font-size: 22px;}
+.f24{font-size: 24px;}
+.f26{font-size: 26px;}
+.f28{ font-size: 28px;}
+.f30{ font-size: 30px;}
+.f50{ font-size: 50px;}
+.f70{ font-size: 70px;}
+
+.fw-100{font-weight:100;}
+
+/*color*/
+.red{color: $color-red1;}
+.white{color: $color-F;}
+.c6{color: $color-6;}
+
+/* 表格*/
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th
+{vertical-align: middle;}
+
+/* 按钮 */
+.btn-blue {color: $color-F;  background-color: $color-blue;  border-color: $color-blue;}
+.btn-blue:focus,
+.btn-blue.focus {color: $color-F;  background-color: $color-blue1;  border-color: $color-blue1;}
+.btn-blue:hover {color: $color-F;  background-color: $color-blue1;  border-color: $color-blue1;}
+.btn-blue:active,
+.btn-blue.active{color: $color-F;  background-color: $color-blue1;  border-color: $color-blue1;}
+.btn-blue:active:hover,
+.btn-blue.active:hover,
+.btn-blue:active:focus,
+.btn-blue.active:focus,
+.btn-blue:active.focus,
+.btn-blue.active.focus {color: $color-F; background-color: $color-blue1; border-color: $color-blue1;}
+
+.btn-red {color: $color-F;  background-color: $color-red;  border-color: $color-red;}
+.btn-red:focus,
+.btn-red.focus {color: $color-F;  background-color: $color-red;  border-color: $color-red;}
+.btn-red:hover {color: $color-F;  background-color: $color-red;  border-color: $color-red;}
+.btn-red:active,
+.btn-red.active{color: $color-F;  background-color: $color-red;  border-color: $color-red;}
+.btn-red:active:hover,
+.btn-red.active:hover,
+.btn-red:active:focus,
+.btn-red.active:focus,
+.btn-red:active.focus,
+.btn-red.active.focus {color: $color-F; background-color: $color-red; border-color: $color-red;}
+
+/*
+* animated动画工具
+*/
+
+.animated {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes slideInDown {
+  from {
+    -webkit-transform: translate3d(0, -10%, 0);
+    transform: translate3d(0, -10%, 0);
+    visibility: visible;
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    -webkit-transform: translate3d(0, -10%, 0);
+    transform: translate3d(0, -10%, 0);
+    visibility: visible;
+  }
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.slideInDown {
+  -webkit-animation-name: slideInDown;
+  animation-name: slideInDown;
+}
+
+
+/* 页面设置 */
+
+.main-title {
+  border-bottom: solid 1px $color-E;
+  font-size: 20px;
+  line-height: 45px;
+}

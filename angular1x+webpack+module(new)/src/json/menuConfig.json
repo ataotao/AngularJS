@@ -1,0 +1,81 @@
+[
+    {
+        "title": "车型数据管理",
+        "icon": "glyphicon-cog",
+        "sub": [
+            {
+                "title": "车型属性值管理",
+                "url": "modelProperty"
+            },
+            {
+                "title": "车型数据明细管理",
+                "url": "modelData"
+            },
+            {
+                "title": "车系（国别）管理",
+                "url": "modelSeries"
+            }
+        ]
+    },
+    {
+        "title": "配件分类管理",
+        "icon": "glyphicon-th",
+        "sub": [
+            {
+                "title": "树形列表查看",
+                "url": "c#"
+            },
+            {
+                "title": "配件品类详情编辑",
+                "url": "d#"
+            }
+        ]
+    },
+    {
+        "title": "厂商管理",
+        "icon": "glyphicon-user",
+        "sub": [
+            {
+                "title": "厂商信息管理",
+                "url": "e#"
+            },
+            {
+                "title": "配件SPU管理",
+                "url": "f#"
+            }
+        ]
+    },
+    {
+        "title": "系统数据同步更新",
+        "icon": "glyphicon-refresh",
+        "sub": [
+            {
+                "title": "车型数据更新",
+                "url": "g#"
+            },
+            {
+                "title": "配件SPU属性值更新",
+                "url": "h#"
+            },
+            {
+                "title": "配件SPU车型属性值更新",
+                "url": "i#"
+            }
+        ]
+    },
+    {
+        "title": "增值服务管理",
+        "icon": "glyphicon-gift",
+        "sub": [
+            {
+                "title": "暂无内容",
+                "url": "j#"
+            }
+        ]
+    },
+    {
+        "title": "退出登录",
+        "icon": "glyphicon glyphicon-log-in",
+        "url": "k#"
+    }
+]

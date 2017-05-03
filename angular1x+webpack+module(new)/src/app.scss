@@ -1,0 +1,99 @@
+@import "./css/config.scss";
+@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+@import "../node_modules/angular-bootstrap-datetimepicker/src/css/datetimepicker.css";
+
+body {
+  font-family: "Microsoft YaHei";
+}
+
+/* page-header */
+
+.page-header {
+  margin: 0;
+  background-color: $color-F8;
+  h1 {
+    font-size: 20px;
+    small {
+      font-size: 20px;
+    }
+  }
+}
+
+
+/* page-main */
+
+.page-main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+/* page-content */
+
+.page-content {
+  display: flex;
+  flex: 1;
+}
+
+
+/* page-main-left */
+
+.page-main-left {
+  order: -1;
+  flex: 0 0 200px;
+  background-color: $color-F8;
+  i.glyphicon {
+    margin-right: 10px;
+    top:3px;
+  }
+  .glyphicon-menu-down {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    font-size: 12px;
+  }
+  .nav-row {
+    border-bottom: solid 1px $color-E;
+    a {
+      z-index: 1;
+      position: relative;
+    }
+  }
+  .nav-second-level {
+    height: 0;
+    li {
+      a {
+        padding-left: 38px;
+        background-color: $color-F8;
+        font-size: 13px;
+      }
+      &.active a {
+        background-color: $color-F;
+        border-bottom: solid 1px $color-E;
+        border-top: solid 1px $color-E;
+        font-weight: bold;
+      }
+      &.active a:after {
+        content: '>';
+        position: absolute;
+        right: 15px;
+        top: 12px;
+        color: $color-C;
+        font-family: 'SimSun';
+      }
+    }
+  }
+  .active a {
+    background-color: $color-E;
+  }
+}
+
+
+/* page-main-right */
+
+.page-main-right {
+  padding-left: 15px;
+  padding-right: 15px;
+  flex: 1;
+}
