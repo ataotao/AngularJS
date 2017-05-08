@@ -1,0 +1,27 @@
+@import './../../css/config.scss';
+
+.tree{line-height: 30px;}
+.tree li{padding-left: 20px;}
+.tree .list{padding-left: 0;}
+
+.tree .line, .tree .list-group-item > div{padding-left: 10px; padding-right: 10px;}
+.tree .line:hover, .tree .list-group-item > div:hover {background-color: $color-E;}
+
+.tree .line::before{
+    content:''; background:$color-C; width:8px; height: 1px; position:absolute; left: -3px; top: 15px;
+}
+.tree .line::after{
+    content:''; background:$color-C; width:1px; height: 15px; position:absolute; left: -4px; top: 0; bottom: 0;
+}
+
+.tree .list::after{
+    content:''; background:$color-C; width:1px; position:absolute; left: 26px; top: 25px; bottom: 25px; z-index: -1;
+}
+
+.tree .active{font-weight: bold;}
+
+.create-box{width: 255px;}
+.create-box .create-input{margin-top: 4px; height: 23px;}
+.create-box .input-group-btn .btn{height: 23px; line-height: 13px;}
+.create-box .tree-select{width: 100px; padding: 0 5px 0 5px; height: 23px; margin-top: 1px; margin-right: 5px; }
+.create-button{margin-top: 6px;}

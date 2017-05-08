@@ -1,0 +1,15 @@
+<div class="tabs p-t-10 p-b-10 m-t-10 bb1e">
+    
+    <div class="btn-group pull-right" ng-if="tabs.config.addbtn">
+        <button type="button" class="btn btn-primary f16" ng-click="tabs.method()">
+            <span ng-bind="tabs.config.addbtn"></span>
+        </button>
+    </div>
+
+    <div class="btn-group m-r-5" ng-repeat="btn in tabs.config.list track by $index">
+        <button type="button" class="btn btn-primary f16" ui-sref-active="active" ui-sref="{{btn.url}}">
+            <span ng-bind="btn.text"></span>
+        </button>
+    </div>
+
+</div>

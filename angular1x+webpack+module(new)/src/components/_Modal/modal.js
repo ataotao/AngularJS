@@ -37,8 +37,8 @@ class ModalController {
             this.isShow = true;
         }, 100);
         this.config = config;
-        //默认默认标题
-        this.config.title = '错误信息';
+        //默认标题
+        this.config.title = this.config.title || '系统提示';
         //默认配置尺寸sm
         this.config.size = !this.config.size ? 'sm' : 'lg';
         //默认配置按钮

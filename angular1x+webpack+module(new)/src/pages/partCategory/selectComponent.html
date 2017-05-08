@@ -1,0 +1,8 @@
+<div class="form-group">
+    <label class="control-label">请选择{{$ctrl.initIndex}}级分类</label>
+    <select class="form-control" ng-model="$ctrl.selectData" ng-options="item.name for item in $ctrl.initData" ng-change="$ctrl.selectChange()">
+        <option value="">--- 请选择 ---</option>
+    </select>
+</div>
+
+<select-component init-data="$ctrl.selectData.sub" init-arr="$ctrl.initArr" init-index="$ctrl.initIndex" ng-if="$ctrl.selectData.sub"></select-component>

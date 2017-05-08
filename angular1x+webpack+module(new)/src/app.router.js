@@ -1,7 +1,7 @@
 routing.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider', '$compileProvider'];
 export default function routing($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, $compileProvider) {
 
-    $urlRouterProvider.otherwise('modelProperty');
+    $urlRouterProvider.otherwise('modelProperty/');
 
     $stateProvider
         // .state('userManage', {
@@ -22,21 +22,35 @@ export default function routing($stateProvider, $urlRouterProvider, $httpProvide
         //     url: '/about',
         //     template: '<about></about>'
         // });
+        // 车型数据管理
         .state('modelProperty', {
-            url: '/modelProperty',
-            template: '<model-property></model-property>'
+            url: '/modelProperty/:id',
+            template: '<model-property></model-property>',
+            title:'车型属性管理'
         })
         .state('modelData', {
             url: '/modelData',
-            template: '<model-data></model-data>'
+            template: '<model-data></model-data>',
+            title:'车型数据明细管理'
         })
         .state('modelSeries', {
             url: '/modelSeries',
-            template: '<model-series></model-series>'
+            template: '<model-series></model-series>',
+            title:'车系国别管理'
+        })
+        // 配件分类管理
+        .state('partCategory', {
+            url: '/partCategory',
+            template: '<part-category page-config="$resolve.pageConfig"></part-category>',
+            title:'配件分类管理',
+            resolve: {
+                pageConfig: ()=> {
+                    return {
+                        test: '测试'
+                    };
+                }
+            }
         });
-
-
-        
 
     //拦截器注入
     // $httpProvider.interceptors.push('httpInterceptor');

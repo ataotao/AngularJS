@@ -1,0 +1,46 @@
+{
+    "status": 1,
+    "comment": "已发布的数据，即能在用户端查询到的有效数据范围",
+    "buttonStatus": "下架数据",
+    "searchInput": [{
+            "key": "pcategory_name",
+            "name": "请输入产品品类"
+        },
+        {
+            "key": "brakepad_code",
+            "name": "请输入工厂编码"
+        }
+    ],
+    "tableList": [{
+            "name": "全选",
+            "type": "check"
+        },
+        {
+            "name": "工厂编码",
+            "type": "str",
+            "key": "brakepad_code"
+        },
+        {
+            "name": "产品品类",
+            "type": "str",
+            "key": "pcategory_name"
+        },
+        {
+            "name": "车型品牌",
+            "type": "arr",
+            "key": "brand"
+        },
+        {
+            "name": "更新时间",
+            "type": "time",
+            "key": "update_time"
+        },
+        {
+            "name": "操作",
+            "type": "action",
+            "key": [
+                "more"
+            ]
+        }
+    ]
+}

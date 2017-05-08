@@ -23,11 +23,11 @@
         "sub": [
             {
                 "title": "树形列表查看",
-                "url": "c#"
+                "url": "partCategory"
             },
             {
                 "title": "配件品类详情编辑",
-                "url": "d#"
+                "url": "partCategory1"
             }
         ]
     },

@@ -1,0 +1,61 @@
+<span class="tree">
+
+    <div class="m-t-15">
+        <!--展示列表-->
+        <ul class="list rel list-group" ng-if="!tree.searchData">
+            <li class="list-group-item" ng-repeat="item in tree.config track by $index" ng-include="'item.html'"></li>
+        </ul>
+        <!--搜索列表-->
+        <div class="list-group">
+            <a href="javascript:;" class="list-group-item" ng-repeat="item in tree.searchList | filter: tree.searchData track by $index" ng-if="tree.searchData">
+                <i class="glyphicon glyphicon-link"></i>
+                <span class="m-l-5" ng-bind="item.name"></span>
+            </a>
+        </divl>
+    </div>
+
+</div>
+
+<script type="text/ng-template" id="item.html">
+
+    <div class="rel" ng-class="{'line': !item.parent, 'active': item.lastActive}" >
+
+        <!--删除按钮-->
+        <span class="glyphicon glyphicon-trash pull-right m-t-8 cur" ng-click="tree.removeItemChange($event, item)"></span>
+        
+        <!--创建按钮-->
+        <label for="createInput" class="glyphicon glyphicon-plus pull-right m-r-5 cur create-button" ng-if="item.sub" ng-click="tree.createItemChange($event, item)"></label>
+        
+        <!--创建表单-->
+        <div class="input-group input-group-sm pull-right m-r-5 create-box" ng-if="item.create">
+            <span class="input-group-btn">
+                <select class="form-control input-sm tree-select" ng-model="tree.categoryProperty">
+                    <option value="">--分类属性--</option>
+                    <option value="0">有下级分类</option>
+                    <option value="1">无下级分类</option>
+                </select>
+            </span>
+            <input type="text" class="form-control input-sm create-input" ng-model="tree.createData" placeholder="请输入" id="createInput">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="tree.createItemSave(item)">保存</button>
+            </span>
+        </div>
+
+        <!--展示列表-->
+        <span class="cur" ng-click="tree.selectFn(item)">
+
+            <i class="glyphicon" ng-class="{'glyphicon-folder-open': item.active, 'glyphicon-folder-close': !item.active && item.sub, 'glyphicon-link': !item.sub}"></i>
+
+            <span class="m-l-5" ng-bind="item.name"></span> 
+            
+            <span class="badge f12 fw-100" style="padding:1px 4px" ng-bind="item.sub.length"></span>
+
+        </span>
+
+    </div>
+
+    <ul ng-if="item.active">
+        <li ng-repeat="item in item.sub track by $index" ng-include="'item.html'"></li>
+    </ul>
+
+</script>

@@ -10,7 +10,7 @@ class modelDataController {
         this.Modal = Modal;
         this.Tips = Tips;
 
-        this.$onInit = function () {
+        this.$onInit = ()=> {
 
         };
 

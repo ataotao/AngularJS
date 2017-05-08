@@ -1,6 +1,4 @@
 @import "./css/config.scss";
-@import "../node_modules/bootstrap/dist/css/bootstrap.css";
-@import "../node_modules/angular-bootstrap-datetimepicker/src/css/datetimepicker.css";
 
 body {
   font-family: "Microsoft YaHei";
@@ -93,7 +91,7 @@ body {
 /* page-main-right */
 
 .page-main-right {
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
   flex: 1;
 }

@@ -10,7 +10,7 @@ class modelSeriesController {
         this.Modal = Modal;
         this.Tips = Tips;
 
-        this.$onInit = function () {
+        this.$onInit = ()=> {
 
         };
 
