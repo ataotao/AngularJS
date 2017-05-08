@@ -93,7 +93,7 @@ class treeController {
             // 有下级分类
             if(!item.sub.length){
                 // 子分类已经为空
-                this.removeItem(this.config, item)
+                this.removeItem(this.config, item);
             }
             
         }
@@ -110,6 +110,7 @@ class treeController {
 
     // 保存品类创建
     createItemSave(item) {
+        // 验证表单
         if(!this.categoryProperty || !this.createData) {
             this.Modal.show(
                 {
@@ -117,16 +118,19 @@ class treeController {
                 }
             );
             return;
-        };
-
+        }
+        // 创建表单显示状态
         item.create = false;
+        // 当前选中菜单状态
         item.active = true;
+        // 添加保存数据
         this.categoryProperty == 1 ?
             item.sub.unshift({ name: this.createData }) :
             item.sub.unshift({
                 name: this.createData,
                 sub: []
             });
+        // 清空表单
         this.createData = '';
         this.categoryProperty = '';
         // 更新搜索列表

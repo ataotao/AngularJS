@@ -23,11 +23,7 @@ import './app.scss';
 //页面模板
 let appComponent = {
     template: require('./app.html'),
-    controller: function ($rootScope, $state) {
-        $rootScope.$on('$stateChangeSuccess', function () {
-            //设置页面标题
-            $rootScope.$state = $state;
-        });
+    controller: function () {
     },
     controllerAs: 'app'
 };
@@ -37,7 +33,6 @@ appComponent.$inject = ['$rootScope', '$state'];
 let pageHeaderComponent = {
     template: require('./components/_pageHeader/pageHeader.html'),
     controller: function () {
-
     },
     controllerAs: 'pageHeader'
 };
@@ -50,7 +45,10 @@ let toHtml = ['$sce', function ($sce) {
 }];
 
 //app.run
-let appRun = ['$rootScope', 'PubSub', function ($rootScope, PubSub) {
+let appRun = ['$rootScope', '$state', 'PubSub', function ($rootScope, $state, PubSub) {
+
+    $rootScope.$state = $state;
+
     $rootScope.$on('$stateChangeStart', function () {
         //路由页面发送模态框初始状态
         PubSub.publish('modalRouter');

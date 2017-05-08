@@ -4,13 +4,12 @@ import templateSelect from './selectComponent.html';
 import './partCategory.scss';
 
 class partCategoryController {
-    constructor($state, CommonService, ENV, Modal, Tips) {
+    constructor(CommonService, ENV, Modal, Tips) {
 
         this.CommonService = CommonService;
         this.ENV = ENV;
         this.Modal = Modal;
         this.Tips = Tips;
-        this.$state = $state; 
 
         this.$onInit = () => {
 
@@ -96,7 +95,7 @@ class partCategoryController {
     }
 
     // 创建一级品类
-    createCategory(event) {
+    createCategory() {
         this.searchData = null;
         this.createInput = true;
     }
@@ -107,7 +106,7 @@ class partCategoryController {
             parent: true,
             name: this.createCategoryData,
             sub: []
-         });
+        });
         this.createInput = false;
         this.createCategoryData = null;
     }
@@ -130,7 +129,7 @@ class selectComponentController {
 export default angular.module('app.partCategory', [])
     .component('partCategory', {
         template: template,
-        controller: ['$state', 'CommonService', 'ENV', 'Modal', 'Tips', partCategoryController],
+        controller: ['CommonService', 'ENV', 'Modal', 'Tips', partCategoryController],
         controllerAs: 'partCategory',
         bindings: {
             pageConfig: '<'
